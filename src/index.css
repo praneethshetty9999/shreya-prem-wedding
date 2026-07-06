@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+
+@theme {
+  /* TODO: 'DIN' and 'Argentum Sans' are commercial fonts we don't have
+     files for yet. Fallbacks below stand in until real files/license
+     are provided — see feedback memory. */
+  --font-heading: 'DIN', 'Arial Narrow', sans-serif;
+  --font-label: 'Source Code Pro', ui-monospace, Consolas, monospace;
+  --font-timer: 'Argentum Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --color-terracotta: #be4e2c;
+  --color-terracotta-dark: #a3421f;
+  --color-cream: #f3e4ce;
+  --color-heading: #ffe2b3;
+  --color-label: #eccdb1;
+  --color-gold: #c9a227;
+  --color-mustard: #e0aa51;
+  --color-coral: #e0725a;
+  --color-maroon: #8c1d1d;
+  --color-navy: #1b2a4a;
+  --color-olive: #8a9a2b;
+  --color-parchment: #ede8dd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+}
