@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
 const COUNTRY_CODES = [
-  { value: '+91', flag: '🇮🇳', label: 'India' },
-  { value: '+1', flag: '🇺🇸', label: 'US / Canada' },
-  { value: '+44', flag: '🇬🇧', label: 'United Kingdom' },
-  { value: '+61', flag: '🇦🇺', label: 'Australia' },
-  { value: '+971', flag: '🇦🇪', label: 'UAE' },
+  { value: '+1', iso: 'US', flag: '🇺🇸', label: 'US / Canada' },
+  { value: '+91', iso: 'IN', flag: '🇮🇳', label: 'India' },
+  { value: '+44', iso: 'GB', flag: '🇬🇧', label: 'United Kingdom' },
+  { value: '+61', iso: 'AU', flag: '🇦🇺', label: 'Australia' },
+  { value: '+971', iso: 'AE', flag: '🇦🇪', label: 'UAE' },
 ]
 
 export function CountryCodeSelect({ value, onChange }) {
@@ -40,10 +40,12 @@ export function CountryCodeSelect({ value, onChange }) {
         onClick={() => setIsOpen((open) => !open)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className="font-heading flex h-full items-center gap-1.5 py-3 pl-3 pr-2 text-terracotta"
+        className="font-label flex h-full items-center gap-1 py-3.5 pl-4 pr-2 text-sm font-semibold text-terracotta"
       >
-        <span className="text-lg leading-none">{selected.flag}</span>
-        <span>{selected.value}</span>
+        <span>
+          {selected.iso}
+          {selected.value}
+        </span>
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -58,7 +60,7 @@ export function CountryCodeSelect({ value, onChange }) {
       {isOpen && (
         <ul
           role="listbox"
-          className="absolute left-0 top-full z-10 mt-2 w-56 overflow-hidden rounded-lg border border-terracotta bg-white text-left shadow-xl"
+          className="absolute left-0 top-full z-10 mt-2 w-56 overflow-hidden rounded-lg border border-vermillion bg-rsvp-cream text-left shadow-xl"
         >
           {COUNTRY_CODES.map((code) => (
             <li key={code.value}>

@@ -16,6 +16,9 @@
   --color-gold: #c9a227;
   --color-mustard: #e0aa51;
   --color-coral: #e0725a;
+  /* RSVP screens (from design mock): bright vermillion accents on light cream */
+  --color-vermillion: #e4492a;
+  --color-rsvp-cream: #fdf3e0;
   --color-maroon: #8c1d1d;
   --color-navy: #1b2a4a;
   --color-olive: #8a9a2b;
@@ -29,4 +32,17 @@ html {
 body {
   margin: 0;
   background: var(--color-cream);
+}
+
+/* Chrome/Safari paint autofilled inputs pale blue, which clashes with the
+   parchment RSVP forms. background-clip:text keeps the field's own background
+   visible while preserving the entered text color. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: var(--color-terracotta);
+  caret-color: var(--color-terracotta);
+  transition: background-color 9999s ease-in-out 0s;
 }

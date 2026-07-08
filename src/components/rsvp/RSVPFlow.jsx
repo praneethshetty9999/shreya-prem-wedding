@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion'
 import Fuse from 'fuse.js'
 import { useState } from 'react'
 import { useGuestList } from '../../hooks/useGuestList'
@@ -41,11 +42,11 @@ export function RSVPFlow({ onBack }) {
     setStep(STEPS.GUEST_DETAILS)
   }
 
-  async function handleDetailsSubmit({ phone, address, meal }) {
+  async function handleDetailsSubmit(details) {
     setIsSubmitting(true)
     setSubmitError('')
     try {
-      await submitRsvp({ name: selectedName, phone, address, meal })
+      await submitRsvp({ name: selectedName, ...details })
       setStep(STEPS.CONFIRMATION)
     } catch {
       setSubmitError('Something went wrong. Please try again.')
@@ -54,18 +55,24 @@ export function RSVPFlow({ onBack }) {
     }
   }
 
-  if (step === STEPS.CONFIRMATION) {
-    return <ConfirmationStep onBack={onBack} />
-  }
-
   return (
     <>
-      <NameEntryStep
-        value={nameInput}
-        onChange={setNameInput}
-        onSubmit={handleNameSubmit}
-        onBack={onBack}
-      />
+      {/* mode="wait": on submit the modal fades out and the name-entry page
+          finishes its exit fade before the confirmation page fades in — a
+          smooth handoff instead of a hard swap. */}
+      <AnimatePresence mode="wait">
+        {step === STEPS.CONFIRMATION ? (
+          <ConfirmationStep key="confirmation" onBack={onBack} />
+        ) : (
+          <NameEntryStep
+            key="name-entry"
+            value={nameInput}
+            onChange={setNameInput}
+            onSubmit={handleNameSubmit}
+            onBack={onBack}
+          />
+        )}
+      </AnimatePresence>
 
       <RSVPResultModal
         step={step}

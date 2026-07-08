@@ -30,7 +30,7 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
 
   return (
     <section
-      className="relative flex min-h-[72svh] flex-col items-center justify-center gap-6 overflow-hidden bg-terracotta bg-cover bg-center px-6 py-8 text-cream sm:gap-8 sm:py-10"
+      className="relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-terracotta bg-cover bg-center px-6 py-8 text-cream sm:gap-8 sm:py-10"
       style={{ backgroundImage: "url('/rust-background.png')" }}
     >
       <PetalShower />
@@ -45,10 +45,12 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         variants={fadeUp}
         className="cursor-pointer text-center"
       >
-        <h1 className="font-heading text-xl font-bold tracking-wide text-heading sm:text-3xl lg:text-5xl">
+        {/* Figma: DIN Bold 39.53px / 100% line-height / 1% letter-spacing */}
+        <h1 className="font-heading text-xl font-bold leading-none tracking-[0.01em] text-heading sm:text-3xl lg:text-[39.53px]">
           SAVE THE DATE
         </h1>
-        <p className="font-heading mt-2 text-base font-bold tracking-wide text-heading sm:text-xl lg:text-3xl">
+        {/* Figma: DIN Bold 32px / 100% / 0% */}
+        <p className="font-heading mt-2 text-base font-bold leading-none text-heading sm:text-xl lg:text-[32px]">
           {SAVE_THE_DATE_RANGE}
         </p>
       </motion.button>
@@ -72,10 +74,11 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         variants={fadeUp}
         className="relative mx-auto hidden h-[383px] w-full max-w-5xl sm:block lg:h-[430px]"
       >
-        <span className="font-label absolute left-0 top-0 text-xl tracking-widest text-label lg:text-2xl">
+        {/* Figma: Source Code Pro Medium 24.06px / 100% / 0% */}
+        <span className="font-label absolute left-0 top-0 text-xl font-medium leading-none text-label lg:text-[24.06px]">
           click date
         </span>
-        <span className="font-label absolute right-0 top-0 text-right text-xl tracking-widest text-label lg:text-2xl">
+        <span className="font-label absolute right-0 top-0 text-right text-xl font-medium leading-none text-label lg:text-[24.06px]">
           to RSVP
         </span>
 
@@ -83,10 +86,11 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
           <img src="/Logo.png" alt="" className="h-full w-full" />
         </div>
 
-        <h2 className="font-heading absolute bottom-[3%] left-0 text-3xl uppercase text-heading lg:text-6xl">
+        {/* Figma: DIN Bold 55.04px / 100% / 0% */}
+        <h2 className="font-heading absolute bottom-[3%] left-0 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerOne}
         </h2>
-        <h2 className="font-heading absolute bottom-[3%] right-0 text-right text-3xl uppercase text-heading lg:text-6xl">
+        <h2 className="font-heading absolute bottom-[3%] right-0 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerTwo}
         </h2>
       </motion.div>
@@ -99,11 +103,15 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         variants={fadeUp}
         className="flex items-center justify-center gap-3 sm:hidden"
       >
-        <h2 className="font-heading text-3xl uppercase text-heading">{COUPLE.partnerOne}</h2>
-        <span aria-hidden="true" className="font-heading text-2xl text-heading">
+        <h2 className="font-heading text-3xl font-bold uppercase text-[#F4EEDB]">
+          {COUPLE.partnerOne}
+        </h2>
+        <span aria-hidden="true" className="font-heading text-2xl font-bold text-[#F4EEDB]">
           &amp;
         </span>
-        <h2 className="font-heading text-3xl uppercase text-heading">{COUPLE.partnerTwo}</h2>
+        <h2 className="font-heading text-3xl font-bold uppercase text-[#F4EEDB]">
+          {COUPLE.partnerTwo}
+        </h2>
       </motion.div>
 
       <motion.p
@@ -125,7 +133,7 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         animate="visible"
         custom={0.6}
         variants={fadeUp}
-        className="font-label text-xl tracking-widest text-label sm:hidden"
+        className="font-label text-xl font-medium leading-none text-label sm:hidden"
       >
         click date to RSVP
       </motion.button>

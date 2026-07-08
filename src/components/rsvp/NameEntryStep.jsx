@@ -1,7 +1,15 @@
 import { motion } from 'framer-motion'
-import { RSVP_DEADLINE } from '../../lib/constants'
-import { ArrowRightIcon } from './icons'
+import { RSVP_DEADLINE, SAVE_THE_DATE_RANGE } from '../../lib/constants'
+import { figureCropStyle } from '../../lib/figureCrop'
 import { BackButton } from './BackButton'
+import { ArrowRightIcon } from './icons'
+
+// The hand-painted gold underline, cropped out of the original frame art so
+// the rebuilt HTML layer keeps the authentic brush stroke (dashes included).
+const UNDERLINE_CROP = figureCropStyle({
+  src: '/rsvp-frame.png',
+  figureBox: { left: 28, top: 77.2, width: 42.5, height: 4.2 },
+})
 
 export function NameEntryStep({ value, onChange, onSubmit, onBack }) {
   function handleSubmit(event) {
@@ -13,48 +21,75 @@ export function NameEntryStep({ value, onChange, onSubmit, onBack }) {
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className="relative flex min-h-svh items-center justify-center bg-terracotta bg-cover bg-center p-4 sm:p-10"
       style={{ backgroundImage: "url('/rust-background.png')" }}
     >
       <BackButton onClick={onBack} />
 
+      {/* Rust border shows ~5% each side, ~10% top/bottom; sharp corners. */}
       <div
-        className="relative aspect-[1009/543] w-full max-w-4xl rounded-3xl bg-cover bg-center shadow-2xl"
-        style={{ backgroundImage: "url('/rsvp-frame.png')" }}
+        className="relative aspect-[1009/543] w-full bg-cover bg-center shadow-2xl sm:aspect-auto sm:h-[80svh] sm:w-[90vw]"
+        style={{ backgroundImage: "url('/rsvp-background.png')" }}
       >
-        <h2 className="sr-only">Please RSVP by {RSVP_DEADLINE}</h2>
+        {/* Figma: DIN Medium 62px */}
+        <h2 className="font-heading absolute top-[20%] w-full text-center text-2xl font-medium leading-none text-vermillion sm:text-5xl lg:text-[62px]">
+          Please RSVP by
+        </h2>
+        {/* Figma: Source Code Pro Medium 29px */}
+        <p className="font-label absolute top-[31%] w-full text-center text-xs font-medium leading-none tracking-[0.2em] text-vermillion sm:text-xl lg:text-[29px]">
+          {RSVP_DEADLINE.replace('July', 'JULY')}
+        </p>
+        <span className="sr-only">Please RSVP by {RSVP_DEADLINE}</span>
+
+        <img
+          src="/Flower.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-[12%] top-[48%] w-[9%]"
+        />
+        <img
+          src="/Flower.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute right-[12%] top-[48%] w-[9%]"
+        />
 
         <form
           onSubmit={handleSubmit}
-          className="absolute left-1/2 top-[76%] w-[43%] max-w-md -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-1/2 top-[63%] w-[46%] max-w-xl -translate-x-1/2"
         >
-          {/* Masks the "enter your name" placeholder baked into rsvp-frame.png so it
-              doesn't show through once the real input below has a value. Both this
-              and the row below are `relative` with no z-index, so paint order falls
-              back to DOM order and the row (declared after) reliably wins. */}
-          <div className="absolute inset-x-0 -inset-y-1 bg-[#fbefd7]" />
-
-          <div className="relative flex items-center gap-3">
+          <div className="flex items-center gap-3 px-1">
             <input
               type="text"
               value={value}
               onChange={(event) => onChange(event.target.value)}
-              placeholder="enter your name"
+              placeholder="Enter your name"
               autoFocus
               aria-label="Your name"
-              className="font-heading w-full bg-transparent text-sm text-terracotta placeholder:text-terracotta/40 focus:outline-none sm:text-lg"
+              className="w-full bg-transparent font-serif text-sm text-terracotta placeholder:text-[#cf9d3f] focus:outline-none sm:text-2xl"
             />
             <button
               type="submit"
               aria-label="Submit name"
-              className="shrink-0 text-terracotta"
+              className="shrink-0 text-terracotta transition-transform hover:translate-x-0.5"
             >
               <ArrowRightIcon className="h-4 w-4 sm:h-6 sm:w-6" />
             </button>
           </div>
-          <div className="mt-1 border-b-2 border-gold" />
+          <div
+            aria-hidden="true"
+            className="mt-1 w-full"
+            style={{ ...UNDERLINE_CROP, aspectRatio: '429 / 23' }}
+          />
         </form>
+
+        <p className="font-timer absolute left-1/2 top-[79%] w-[70%] -translate-x-1/2 text-center text-[10px] tracking-wide text-coral sm:text-lg lg:text-xl">
+          We request your attendance for all three days of our
+          <br />
+          celebration: {SAVE_THE_DATE_RANGE}
+        </p>
       </div>
     </motion.section>
   )

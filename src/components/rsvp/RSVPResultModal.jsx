@@ -13,7 +13,7 @@ export function RSVPResultModal({
   submitError,
   onClose,
 }) {
-  const isOpen = step !== 'NAME_ENTRY'
+  const isOpen = step === 'SELECT_NAME' || step === 'GUEST_DETAILS'
 
   return (
     <AnimatePresence>
@@ -22,7 +22,7 @@ export function RSVPResultModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#3a1d10]/30 p-4 backdrop-blur-2xl"
           onClick={onClose}
         >
           <motion.div
@@ -33,7 +33,8 @@ export function RSVPResultModal({
             role="dialog"
             aria-modal="true"
             onClick={(event) => event.stopPropagation()}
-            className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl border-2 border-terracotta bg-parchment p-8 text-center shadow-2xl"
+            className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-3xl border border-vermillion bg-rsvp-cream bg-cover bg-center p-8 text-center shadow-2xl"
+            style={{ backgroundImage: "url('/rsvp-background.png')" }}
           >
             {step === 'SELECT_NAME' && (
               <NameSelectStep matches={matches} onSelect={onSelectName} />
@@ -50,9 +51,12 @@ export function RSVPResultModal({
             <button
               type="button"
               onClick={onClose}
-              className="font-label mt-6 text-sm tracking-widest text-terracotta/60 underline"
+              className="font-label mx-auto mt-6 flex items-center gap-1.5 text-base text-terracotta underline underline-offset-2"
             >
-              close
+              <span aria-hidden="true" className="no-underline">
+                ✕
+              </span>
+              Close
             </button>
           </motion.div>
         </motion.div>
