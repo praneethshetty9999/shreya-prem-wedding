@@ -1,8 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { figureCropStyle } from '../../lib/figureCrop'
-import { SITE_PASSWORD } from '../../lib/constants'
-import { unlockSite } from '../../lib/siteAuth'
 import { ArrowRightIcon } from '../rsvp/icons'
 
 // The elephant stamp is cropped straight out of the landing mock art.
@@ -12,21 +9,6 @@ const STAMP_CROP = figureCropStyle({
 })
 
 export function LandingPage({ onEnter }) {
-  const [isAsking, setIsAsking] = useState(false)
-  const [password, setPassword] = useState('')
-  const [hasError, setHasError] = useState(false)
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    if (password === SITE_PASSWORD) {
-      unlockSite()
-      onEnter()
-    } else {
-      setHasError(true)
-      setPassword('')
-    }
-  }
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -64,70 +46,15 @@ export function LandingPage({ onEnter }) {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-end gap-2">
-            {/* `layout` lets the shared rounded-full container smoothly resize
-                between the button and the form widths (FLIP animation);
-                AnimatePresence crossfades the swapped contents inside it. */}
-            <motion.div
-              layout
-              transition={{ layout: { duration: 0.35, ease: [0.32, 0.72, 0.22, 1] } }}
-              className={`flex items-center gap-2 rounded-full border border-vermillion px-5 py-2.5 transition-colors ${
-                isAsking ? '' : 'hover:bg-vermillion/10'
-              }`}
+          <div className="mt-10 flex justify-end">
+            <button
+              type="button"
+              onClick={onEnter}
+              className="font-label flex items-center gap-2 rounded-full border border-vermillion px-7 py-2.5 text-lg text-vermillion transition-colors hover:bg-vermillion/10"
             >
-              <AnimatePresence mode="popLayout" initial={false}>
-                {isAsking ? (
-                  <motion.form
-                    key="password-form"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    onSubmit={handleSubmit}
-                    className="flex items-center gap-2"
-                  >
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(event) => {
-                        setPassword(event.target.value)
-                        setHasError(false)
-                      }}
-                      placeholder="Enter password"
-                      autoFocus
-                      aria-label="Site password"
-                      className="font-label w-40 bg-transparent text-lg text-vermillion placeholder:text-vermillion/50 focus:outline-none sm:w-48"
-                    />
-                    <button
-                      type="submit"
-                      aria-label="Submit password"
-                      className="shrink-0 text-vermillion transition-transform hover:translate-x-0.5"
-                    >
-                      <ArrowRightIcon className="h-5 w-5" />
-                    </button>
-                  </motion.form>
-                ) : (
-                  <motion.button
-                    key="enter-button"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    type="button"
-                    onClick={() => setIsAsking(true)}
-                    className="font-label flex items-center gap-2 py-0.5 text-lg text-vermillion"
-                  >
-                    Enter
-                    <ArrowRightIcon className="h-5 w-5" />
-                  </motion.button>
-                )}
-              </AnimatePresence>
-            </motion.div>
-            {hasError && (
-              <p role="alert" className="font-label text-sm text-vermillion">
-                Incorrect password — please try again.
-              </p>
-            )}
+              Enter
+              <ArrowRightIcon className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </div>

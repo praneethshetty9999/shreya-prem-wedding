@@ -8,12 +8,12 @@ import { PalaceSection } from './components/sections/PalaceSection'
 import { StorySection } from './components/sections/StorySection'
 import { VideoSection } from './components/sections/VideoSection'
 import { ItineraryBadge } from './components/ui/ItineraryBadge'
-import { isSiteUnlocked } from './lib/siteAuth'
 
 function App() {
-  // The landing page is the only page that doesn't require the password —
-  // everything past it stays gated behind isSiteUnlocked() for the tab session.
-  const [hasEntered, setHasEntered] = useState(isSiteUnlocked)
+  // Password protection now happens at the Cloudflare edge (functions/_middleware.js)
+  // before any of this ever reaches the browser — hasEntered is just the
+  // postcard-to-home transition, not a security boundary.
+  const [hasEntered, setHasEntered] = useState(false)
   const [isRsvpOpen, setIsRsvpOpen] = useState(false)
 
   if (isRsvpOpen) {

@@ -10,8 +10,3 @@ export const SAVE_THE_DATE_RANGE = 'March 3 – 6, 2027'
 
 // TODO: confirm the real RSVP cutoff date.
 export const RSVP_DEADLINE = 'July 31st, 2026'
-
-// Shared site password (not user-specific). Client-side only — good enough to
-// keep the invite off search engines and casual link-sharing, not a real
-// authorization boundary.
-export const SITE_PASSWORD = 'PremShreya123'
