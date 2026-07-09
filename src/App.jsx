@@ -9,11 +9,28 @@ import { StorySection } from './components/sections/StorySection'
 import { VideoSection } from './components/sections/VideoSection'
 import { ItineraryBadge } from './components/ui/ItineraryBadge'
 
+// gate.html appends this after a successful password submit so the user
+// lands straight on the hero section instead of the postcard they just came
+// from — a second "Enter" click there would be redundant.
+function cameStraightFromGate() {
+  if (typeof window === 'undefined') return false
+  const params = new URLSearchParams(window.location.search)
+  return params.get('entered') === '1'
+}
+
 function App() {
   // Password protection now happens at the Cloudflare edge (functions/_middleware.js)
   // before any of this ever reaches the browser — hasEntered is just the
   // postcard-to-home transition, not a security boundary.
-  const [hasEntered, setHasEntered] = useState(false)
+  const [hasEntered, setHasEntered] = useState(() => {
+    const skipLanding = cameStraightFromGate()
+    if (skipLanding) {
+      // Strip the flag so refreshing or sharing the URL doesn't skip the
+      // postcard for anyone else.
+      window.history.replaceState({}, '', window.location.pathname)
+    }
+    return skipLanding
+  })
   const [isRsvpOpen, setIsRsvpOpen] = useState(false)
 
   if (isRsvpOpen) {

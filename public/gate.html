@@ -302,7 +302,9 @@
         })
           .then(function (res) {
             if (res.ok) {
-              location.href = next
+              // ?entered=1 tells App.jsx to skip straight to the hero
+              // section instead of showing the postcard "Enter" again.
+              location.href = next === '/' ? '/?entered=1' : next
               return
             }
             error.textContent = 'Incorrect password — please try again.'

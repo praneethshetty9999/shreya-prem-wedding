@@ -1,5 +1,5 @@
 const COOKIE_NAME = 'site_auth'
-const SESSION_MS = 1000 * 60 * 60 * 24 * 14 // 14 days
+const SESSION_MS = 1000 * 60 * 60 * 2 // 2 hours
 
 async function hmacHex(message, secret) {
   const key = await crypto.subtle.importKey(
