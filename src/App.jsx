@@ -8,9 +8,12 @@ import { PalaceSection } from './components/sections/PalaceSection'
 import { StorySection } from './components/sections/StorySection'
 import { VideoSection } from './components/sections/VideoSection'
 import { ItineraryBadge } from './components/ui/ItineraryBadge'
+import { isSiteUnlocked } from './lib/siteAuth'
 
 function App() {
-  const [hasEntered, setHasEntered] = useState(false)
+  // The landing page is the only page that doesn't require the password —
+  // everything past it stays gated behind isSiteUnlocked() for the tab session.
+  const [hasEntered, setHasEntered] = useState(isSiteUnlocked)
   const [isRsvpOpen, setIsRsvpOpen] = useState(false)
 
   if (isRsvpOpen) {
