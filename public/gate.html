@@ -4,120 +4,296 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shreya &amp; Prem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      :root {
-        color-scheme: light;
-      }
       * {
         box-sizing: border-box;
       }
+      html,
       body {
         margin: 0;
         min-height: 100svh;
+      }
+      body {
         display: flex;
         align-items: center;
-        justify-content: center;
-        background: #fdf3e0;
+        min-height: 100svh;
+        background: #fdf3e0 url('/rsvp-background.png') center / cover no-repeat;
         font-family: 'Source Code Pro', ui-monospace, Consolas, monospace;
-        color: #7c3b24;
-        padding: 24px;
+        position: relative;
+        overflow: hidden;
       }
-      .card {
+
+      /* Elephant postage stamp, cropped the same way the React postcard does:
+         the full landing-page.png stretched as a background so only the
+         stamp region shows through this box. */
+      .stamp {
+        position: absolute;
+        right: 6%;
+        top: 6%;
+        width: 6rem;
+        aspect-ratio: 144 / 174;
+        background-image: url('/landing-page.png');
+        background-size: 925.9259% 555.5556%;
+        background-position: 94.3946% 7.0732%;
+      }
+      @media (min-width: 640px) {
+        .stamp {
+          width: 8rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .stamp {
+          width: 9rem;
+        }
+      }
+
+      .divider {
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 19%;
+        height: 62%;
+        border-left: 1px dashed rgba(185, 141, 79, 0.7);
+      }
+      @media (min-width: 768px) {
+        .divider {
+          display: block;
+        }
+      }
+
+      .right-half {
+        display: flex;
         width: 100%;
-        max-width: 420px;
-        text-align: center;
+        justify-content: center;
+        padding: 0 1.5rem;
       }
-      h1 {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-weight: 700;
-        font-size: 1.85rem;
-        letter-spacing: 0.02em;
-        color: #e4492a;
-        margin: 0 0 0.5rem;
+      @media (min-width: 768px) {
+        .right-half {
+          width: 50%;
+          transform: translateX(100%);
+          padding: 0 3rem;
+        }
       }
-      p.sub {
-        margin: 0 0 2rem;
-        font-size: 0.95rem;
-        letter-spacing: 0.05em;
-        color: #b98d4f;
+      @media (min-width: 1024px) {
+        .right-half {
+          padding: 0 5rem;
+        }
       }
-      form {
+
+      .right-half-inner {
+        width: 100%;
+        max-width: 36rem;
+      }
+
+      .lines {
+        font-size: 1rem;
+        color: #7c3b24;
+      }
+      @media (min-width: 640px) {
+        .lines {
+          font-size: 1.125rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .lines {
+          font-size: 1.25rem;
+        }
+      }
+      .lines p {
+        margin: 0;
+        text-align: right;
+        border-bottom: 1px dashed #b98d4f;
+        padding-bottom: 0.5rem;
+      }
+      .lines p + p {
+        padding-top: 0.75rem;
+      }
+      .lines .last {
+        letter-spacing: 0.1em;
+      }
+
+      .action-row {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+      }
+
+      /* The pill container's width is animated in JS (measured, then
+         transitioned) to morph smoothly between the Enter button and the
+         password field, mirroring the layout animation the React app used. */
+      .pill {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
         border: 1px solid #e4492a;
         border-radius: 999px;
-        padding: 0.65rem 1.25rem;
-        transition: opacity 0.2s ease;
+        padding: 0.625rem 1.25rem;
+        overflow: hidden;
+        white-space: nowrap;
       }
-      input {
-        flex: 1;
-        min-width: 0;
+      .pill.hoverable:hover {
+        background: rgba(228, 73, 42, 0.1);
+      }
+
+      .enter-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: none;
+        background: transparent;
+        color: #e4492a;
+        font: inherit;
+        font-size: 1.125rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .password-form {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .password-form input {
+        width: 10rem;
         border: none;
         background: transparent;
         outline: none;
         font: inherit;
-        font-size: 1.05rem;
+        font-size: 1.125rem;
         color: #7c3b24;
       }
-      input::placeholder {
+      @media (min-width: 640px) {
+        .password-form input {
+          width: 12rem;
+        }
+      }
+      .password-form input::placeholder {
         color: rgba(228, 73, 42, 0.5);
       }
-      button {
+      .password-form button {
+        flex-shrink: 0;
         border: none;
         background: transparent;
         color: #e4492a;
         cursor: pointer;
-        font-size: 1.2rem;
-        line-height: 1;
         padding: 0;
+        display: flex;
         transition: transform 0.2s ease;
       }
-      button:hover {
+      .password-form button:hover {
         transform: translateX(2px);
       }
-      button:disabled {
-        opacity: 0.5;
-        cursor: default;
-        transform: none;
+
+      .fade {
+        transition: opacity 0.2s ease;
       }
+      .fade.hidden-fade {
+        display: none;
+        opacity: 0;
+      }
+
       .error {
-        margin-top: 0.75rem;
         font-size: 0.85rem;
         color: #e4492a;
         min-height: 1.2em;
+        margin: 0;
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <h1>Shreya &amp; Prem</h1>
-      <p class="sub">Please enter the password to continue</p>
-      <form id="gate-form">
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          autocomplete="off"
-          autofocus
-        />
-        <button type="submit" id="submit-btn" aria-label="Submit">&#8594;</button>
-      </form>
-      <p class="error" id="error" role="alert"></p>
+    <div class="stamp" aria-hidden="true"></div>
+    <div class="divider" aria-hidden="true"></div>
+
+    <div class="right-half">
+      <div class="right-half-inner">
+        <div class="lines">
+          <p>With hearts full of love and joy,</p>
+          <p>we invite you to join us as we begin</p>
+          <p class="last">OUR FOREVER.</p>
+        </div>
+
+        <div class="action-row">
+          <div class="pill hoverable" id="pill">
+            <button type="button" class="enter-btn fade" id="enter-btn">
+              Enter
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+            <form class="password-form fade hidden-fade" id="password-form">
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                autocomplete="off"
+                aria-label="Site password"
+              />
+              <button type="submit" aria-label="Submit password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <p class="error" id="error" role="alert"></p>
+        </div>
+      </div>
     </div>
 
     <script>
-      var form = document.getElementById('gate-form')
+      var pill = document.getElementById('pill')
+      var enterBtn = document.getElementById('enter-btn')
+      var form = document.getElementById('password-form')
       var input = document.getElementById('password')
       var error = document.getElementById('error')
-      var submitBtn = document.getElementById('submit-btn')
       var params = new URLSearchParams(location.search)
       var next = params.get('next') || '/'
+      var isAsking = false
+
+      function morphTo(showForm) {
+        var startWidth = pill.getBoundingClientRect().width
+        pill.style.transition = 'none'
+        pill.style.width = startWidth + 'px'
+        pill.classList.remove('hoverable')
+
+        enterBtn.classList.toggle('hidden-fade', showForm)
+        form.classList.toggle('hidden-fade', !showForm)
+
+        // Force layout, then measure the natural width of the new content.
+        void pill.offsetWidth
+        pill.style.width = 'auto'
+        var endWidth = pill.getBoundingClientRect().width
+        pill.style.width = startWidth + 'px'
+        void pill.offsetWidth
+
+        requestAnimationFrame(function () {
+          pill.style.transition = 'width 0.35s cubic-bezier(.32,.72,.22,1)'
+          pill.style.width = endWidth + 'px'
+        })
+
+        if (showForm) {
+          setTimeout(function () {
+            input.focus()
+          }, 150)
+        }
+      }
+
+      enterBtn.addEventListener('click', function () {
+        isAsking = true
+        morphTo(true)
+      })
 
       form.addEventListener('submit', function (event) {
         event.preventDefault()
         error.textContent = ''
-        submitBtn.disabled = true
 
         fetch('/api/auth', {
           method: 'POST',
@@ -132,11 +308,9 @@
             error.textContent = 'Incorrect password — please try again.'
             input.value = ''
             input.focus()
-            submitBtn.disabled = false
           })
           .catch(function () {
             error.textContent = 'Something went wrong — please try again.'
-            submitBtn.disabled = false
           })
       })
     </script>
