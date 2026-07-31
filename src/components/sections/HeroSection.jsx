@@ -87,10 +87,10 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         </div>
 
         {/* Figma: DIN Condensed Bold 55.04px / 100% / 0% */}
-        <h2 className="font-heading-condensed absolute bottom-[3%] left-0 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute bottom-[22%] left-0 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerOne}
         </h2>
-        <h2 className="font-heading-condensed absolute bottom-[3%] right-0 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute bottom-[22%] right-0 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerTwo}
         </h2>
       </motion.div>

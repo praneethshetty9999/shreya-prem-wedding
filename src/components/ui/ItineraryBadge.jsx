@@ -7,10 +7,10 @@ export function ItineraryBadge({ onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className="fixed bottom-5 right-5 z-40 flex h-28 w-28 cursor-pointer items-center justify-center rounded-full bg-cover bg-center shadow-lg transition-transform duration-300 hover:scale-105 sm:h-32 sm:w-32"
+      className="fixed bottom-4 right-4 z-40 flex h-20 w-20 cursor-pointer items-center justify-center rounded-full bg-cover bg-center shadow-lg transition-transform duration-300 hover:scale-105 sm:bottom-5 sm:right-5 sm:h-28 sm:w-28 lg:h-32 lg:w-32"
       style={{ backgroundImage: "url('/iternary-logo.png')" }}
     >
-      <span className="text-xl font-bold text-white sm:text-2xl">itinerary</span>
+      <span className="text-base font-bold text-white sm:text-xl lg:text-2xl">itinerary</span>
     </button>
   )
 }

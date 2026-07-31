@@ -1,8 +1,12 @@
 const MAPS_URL =
   'https://www.google.com/maps/dir//bishangarh+fort+jaipur/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x396d058b59c0dcd9:0xda1aa4a41bf4acce?sa=X&ved=1t:155782&ictx=111'
 
+// No horizontal anchor here — the hand-print tooltip sits near the left edge
+// and the tilak tooltip near the right, so each usage below picks its own
+// left-0/right-0 anchor instead of a shared centered one, which was pushing
+// the wider tilak tooltip past the viewport edge on narrow screens.
 const tooltipClass =
-  'pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-xl bg-maroon/95 px-4 py-2.5 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100'
+  'pointer-events-none absolute bottom-full mb-2 rounded-xl bg-maroon/95 px-4 py-2.5 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100'
 
 export function PalaceSection() {
   return (
@@ -32,7 +36,7 @@ export function PalaceSection() {
           alt=""
           className="h-auto w-full transition-transform duration-300 ease-out group-hover:scale-110"
         />
-        <span className={`${tooltipClass} flex items-center gap-1.5 whitespace-nowrap`}>
+        <span className={`${tooltipClass} left-0 flex items-center gap-1.5 whitespace-nowrap`}>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -62,7 +66,7 @@ export function PalaceSection() {
           alt="Rows of red tilak marks"
           className="h-auto w-full transition-transform duration-300 ease-out group-hover:scale-105"
         />
-        <div className={`${tooltipClass} w-60 text-left sm:w-72`}>
+        <div className={`${tooltipClass} right-0 w-60 text-left sm:w-72`}>
           <p className="font-label text-[11px] leading-relaxed tracking-wide text-cream">
             The tilak is a sacred mark of blessing in Indian culture — placed on the forehead to
             honor and welcome guests, invoke protection, and mark auspicious beginnings.
@@ -70,7 +74,7 @@ export function PalaceSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-[17%] left-0 z-30 aspect-[40/3] w-full overflow-hidden md:bottom-[20%]">
+      <div className="absolute bottom-[21%] left-0 z-30 aspect-[40/3] w-full overflow-hidden md:bottom-[24%]">
         <img
           src="/Palace-boundary.png"
           alt=""
