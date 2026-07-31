@@ -35,7 +35,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
           Please RSVP by
         </h2>
         {/* Figma: Source Code Pro Medium 29px */}
-        <p className="font-label absolute top-[33%] w-full text-center text-xs font-medium leading-none tracking-[0.2em] text-vermillion sm:text-xl lg:text-[29px]">
+        <p className="font-label absolute top-[33%] w-full text-center text-xs font-medium leading-none tracking-[0.08em] text-vermillion sm:text-xl lg:text-[29px]">
           {RSVP_DEADLINE.replace('July', 'JULY')}
         </p>
         <span className="sr-only">Please RSVP by {RSVP_DEADLINE}</span>

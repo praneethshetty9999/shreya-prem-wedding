@@ -81,7 +81,9 @@ function App() {
     <>
       {/* Every screen except the landing postcard gets the hamburger — it
           renders once here, above the RSVP flow and the story/itinerary
-          overlays alike, instead of being tied to any one of them. */}
+          overlays alike, instead of being tied to any one of them. The
+          itinerary badge itself opens the itinerary popup, so it has no
+          purpose (and no room) on the RSVP flow. */}
       {hasEntered && (
         <>
           <HamburgerMenu
@@ -90,7 +92,7 @@ function App() {
             onOpenItinerary={openItinerary}
             onOpenRsvp={openRsvp}
           />
-          <ItineraryBadge onClick={openItinerary} />
+          {!isRsvpOpen && <ItineraryBadge onClick={openItinerary} />}
         </>
       )}
 
