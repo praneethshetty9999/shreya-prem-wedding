@@ -15,9 +15,8 @@ const EVENTS = [
     date: 'March 3rd',
     bg: '#da9d3f',
     theme: 'dark',
-    figureBox: { left: 57.9, top: 4, width: 42, height: 75.6 },
-    figureNotch: { corner: 'top-right', width: 40, height: 30 },
-    figureAspect: 0.8868,
+    figureBox: { left: 57.94, top: 16.67, width: 30, height: 60.56 },
+    figureAspect: 0.7907,
     description:
       'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). Placeholder text — full details coming soon.',
     facts: [
@@ -34,9 +33,8 @@ const EVENTS = [
     date: 'March 4th',
     bg: '#db595a',
     theme: 'light',
-    figureBox: { left: 54.4, top: 2, width: 45.5, height: 82.25 },
-    figureNotch: { corner: 'top-right', width: 45, height: 25 },
-    figureAspect: 0.883,
+    figureBox: { left: 55.22, top: 20.31, width: 38.38, height: 60.8 },
+    figureAspect: 1.0077,
     description:
       'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. Placeholder text — full details coming soon.',
     facts: [

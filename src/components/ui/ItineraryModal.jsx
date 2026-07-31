@@ -10,7 +10,7 @@ export function ItineraryModal({ onClose }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#3a1d10]/30 p-4 backdrop-blur-xl"
+      className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-[#3a1d10]/30 p-4 backdrop-blur-xl"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -21,7 +21,7 @@ export function ItineraryModal({ onClose }) {
         aria-modal="true"
         aria-label="Itinerary coming soon"
         onClick={(event) => event.stopPropagation()}
-        className="relative w-full max-w-lg rounded-lg border border-vermillion/60 bg-rsvp-cream bg-cover bg-center px-8 pb-10 pt-12 text-center shadow-2xl"
+        className="relative w-full max-w-lg cursor-auto rounded-lg border border-vermillion/60 bg-rsvp-cream bg-cover bg-center px-8 pb-10 pt-12 text-center shadow-2xl"
         style={{ backgroundImage: "url('/rsvp-background.png')" }}
       >
         <button

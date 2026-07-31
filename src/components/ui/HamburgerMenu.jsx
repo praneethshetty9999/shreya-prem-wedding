@@ -67,7 +67,7 @@ export function HamburgerMenu({ onGoHome, onOpenOurStory, onOpenItinerary, onOpe
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-y-0 left-[280px] right-0 z-[60] backdrop-blur-md"
+              className="fixed inset-y-0 left-[280px] right-0 z-[60] cursor-pointer backdrop-blur-md"
             />
 
             <motion.div

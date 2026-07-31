@@ -34,6 +34,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Tailwind v4 no longer gives buttons a pointer cursor by default — every
+   clickable control in this app is a <button>, so this alone covers them. */
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 body {
   margin: 0;
   background: var(--color-cream);

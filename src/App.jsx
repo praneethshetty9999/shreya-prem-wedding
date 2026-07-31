@@ -74,12 +74,15 @@ function App() {
           renders once here, above the RSVP flow and the story/itinerary
           overlays alike, instead of being tied to any one of them. */}
       {hasEntered && (
-        <HamburgerMenu
-          onGoHome={goHome}
-          onOpenOurStory={openOurStory}
-          onOpenItinerary={openItinerary}
-          onOpenRsvp={openRsvp}
-        />
+        <>
+          <HamburgerMenu
+            onGoHome={goHome}
+            onOpenOurStory={openOurStory}
+            onOpenItinerary={openItinerary}
+            onOpenRsvp={openRsvp}
+          />
+          <ItineraryBadge onClick={openItinerary} />
+        </>
       )}
 
       {isRsvpOpen ? (
@@ -95,12 +98,7 @@ function App() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              {/* The itinerary badge straddles the hero/beige boundary, so it
-                  lives outside the hero (whose overflow-hidden would clip it). */}
-              <div className="relative">
-                <HeroSection onOpenRsvp={openRsvp} />
-                <ItineraryBadge onClick={openItinerary} />
-              </div>
+              <HeroSection onOpenRsvp={openRsvp} />
 
               <section
                 className="bg-parchment bg-cover bg-center"
