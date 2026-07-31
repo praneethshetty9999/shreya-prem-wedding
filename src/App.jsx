@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { RSVPFlow } from './components/rsvp/RSVPFlow'
 import { EventDetailsSection } from './components/sections/EventDetailsSection'
 import { HeroSection } from './components/sections/HeroSection'
@@ -22,49 +23,57 @@ function cameStraightFromGate() {
 }
 
 function App() {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   // Password protection now happens at the Cloudflare edge (functions/_middleware.js)
   // before any of this ever reaches the browser — hasEntered is just the
   // postcard-to-home transition, not a security boundary.
   const [hasEntered, setHasEntered] = useState(() => {
-    const skipLanding = cameStraightFromGate()
-    if (skipLanding) {
+    // Landing anywhere other than "/" (a shared /rsvp or /our-story link,
+    // browser back/forward, a refresh mid-flow) means the postcard has
+    // already been dealt with — jump straight past it.
+    const skipLanding = cameStraightFromGate() || window.location.pathname !== '/'
+    if (cameStraightFromGate()) {
       // Strip the flag so refreshing or sharing the URL doesn't skip the
       // postcard for anyone else.
       window.history.replaceState({}, '', window.location.pathname)
     }
     return skipLanding
   })
-  const [isRsvpOpen, setIsRsvpOpen] = useState(false)
-  const [isOurStoryOpen, setIsOurStoryOpen] = useState(false)
   const [isItineraryOpen, setIsItineraryOpen] = useState(false)
+
+  // /rsvp and /our-story are real routes (not just component state) so the
+  // browser's own back button closes them instead of leaving the app
+  // entirely and re-triggering the password gate. See feedback: back button
+  // used to land on /gate because these were state-only overlays with no
+  // history entry of their own.
+  const isRsvpOpen = location.pathname === '/rsvp'
+  const isOurStoryOpen = location.pathname === '/our-story'
 
   // "Homepage" needs to back out of whatever's open (RSVP, Our Story,
   // itinerary popup) — not just scroll — since any of those can be the
   // active screen when the hamburger is used.
   function goHome() {
-    setIsRsvpOpen(false)
-    setIsOurStoryOpen(false)
+    navigate('/')
     setIsItineraryOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // Our Story and the itinerary popup are both fixed, full-screen overlays
-  // rendered independently of isRsvpOpen — if one was left open when RSVP
-  // opened, it'd sit on top of (and hide) the RSVP flow underneath. Opening
-  // any one of the three has to close the other two.
+  // The itinerary popup is a fixed, full-screen overlay rendered
+  // independently of the route — if it was left open when RSVP or Our Story
+  // opened, it'd sit on top of (and hide) the screen underneath. Opening
+  // either of those has to close it.
   function openRsvp() {
-    setIsOurStoryOpen(false)
     setIsItineraryOpen(false)
-    setIsRsvpOpen(true)
+    navigate('/rsvp')
   }
   function openOurStory() {
-    setIsRsvpOpen(false)
     setIsItineraryOpen(false)
-    setIsOurStoryOpen(true)
+    navigate('/our-story')
   }
   function openItinerary() {
-    setIsRsvpOpen(false)
-    setIsOurStoryOpen(false)
+    if (location.pathname !== '/') navigate('/')
     setIsItineraryOpen(true)
   }
 
@@ -86,7 +95,7 @@ function App() {
       )}
 
       {isRsvpOpen ? (
-        <RSVPFlow onBack={() => setIsRsvpOpen(false)} />
+        <RSVPFlow onBack={() => navigate('/')} />
       ) : (
         <AnimatePresence mode="wait">
           {!hasEntered ? (
@@ -125,7 +134,7 @@ function App() {
       )}
 
       <AnimatePresence>
-        {isOurStoryOpen && <OurStoryOverlay onClose={() => setIsOurStoryOpen(false)} />}
+        {isOurStoryOpen && <OurStoryOverlay onClose={() => navigate('/')} />}
         {isItineraryOpen && <ItineraryModal onClose={() => setIsItineraryOpen(false)} />}
       </AnimatePresence>
     </>

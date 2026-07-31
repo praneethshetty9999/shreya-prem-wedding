@@ -1,0 +1,4 @@
+# SPA fallback: /rsvp, /our-story, etc. have no matching static file — serve
+# index.html for them (200, not a redirect) so React Router can render the
+# right screen client-side instead of Cloudflare Pages 404ing.
+/*    /index.html   200

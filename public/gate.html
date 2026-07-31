@@ -302,9 +302,12 @@
         })
           .then(function (res) {
             if (res.ok) {
+              // location.replace (not .href) so this gate page doesn't sit in
+              // browser history — otherwise the back button from the app
+              // lands right back on the password form instead of leaving.
               // ?entered=1 tells App.jsx to skip straight to the hero
               // section instead of showing the postcard "Enter" again.
-              location.href = next === '/' ? '/?entered=1' : next
+              location.replace(next === '/' ? '/?entered=1' : next)
               return
             }
             error.textContent = 'Incorrect password — please try again.'

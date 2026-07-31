@@ -104,10 +104,18 @@ const EVENTS = [
 const GRID_EVENTS = EVENTS.filter((event) => event.id !== 'shaadi')
 const SHAADI_EVENT = EVENTS.find((event) => event.id === 'shaadi')
 
-// Card1-4 and Card5 are placed on one shared grid (rather than Card5 living in
-// a separately-sized nested grid) so Card4's row and Card5's row-span-2 bottom
-// resolve against the exact same grid line — guarantees the bottoms align
-// instead of relying on a nested grid's auto height matching a stretched sibling.
+// Card1-4 and Card5 are placed on one shared grid, and every card (Card5
+// included) is sized off the same width percentage of its own column rather
+// than Card5 stretching to fill the row-span-2 track by height. Letting
+// Card5 stretch by height fed back into the grid's auto row-sizing (its
+// height is indefinite until the rows are sized, so the browser falls back
+// to Card5's own intrinsic aspect ratio at the column's full width — taller
+// than two stacked Card1-4 rows — which inflated both rows and pushed
+// Card3/Card4 short of Card5's bottom). Sizing every card by width instead
+// keeps each card's own box non-circular, so rows 1-2 size purely off
+// Card1-4 (identical aspect ratio → identical size) and Card5's bottom lands
+// within a pixel or two of Card3/Card4's without any of them changing size
+// relative to each other.
 export function EventDetailsSection() {
   const [activeEvent, setActiveEvent] = useState(null)
 
@@ -123,19 +131,11 @@ export function EventDetailsSection() {
           />
         ))}
 
-        {/* A bare image grid item here would feed Card5's tall intrinsic aspect
-            ratio into the grid's row-track sizing, inflating both spanned rows
-            so Card3/Card4 end up short of the row's bottom. The sizeless div is
-            the actual grid item; the card inside is scaled by height only
-            (width auto) so it shrinks as a whole instead of being cropped. */}
-        <div className="mx-auto w-[85%] md:col-start-3 md:row-span-2 md:flex md:h-full md:w-full md:items-start md:justify-center">
-          <EventCard
-            event={SHAADI_EVENT}
-            onOpen={setActiveEvent}
-            className="w-full md:h-full md:w-auto"
-            imgClassName="md:h-full md:w-auto"
-          />
-        </div>
+        <EventCard
+          event={SHAADI_EVENT}
+          onOpen={setActiveEvent}
+          className="mx-auto w-[85%] self-start md:col-start-3 md:row-span-2 md:w-[86%]"
+        />
       </div>
 
       <AnimatePresence>
