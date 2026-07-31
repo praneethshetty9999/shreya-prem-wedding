@@ -69,7 +69,6 @@ export function RSVPFlow({ onBack }) {
             value={nameInput}
             onChange={setNameInput}
             onSubmit={handleNameSubmit}
-            onBack={onBack}
           />
         )}
       </AnimatePresence>

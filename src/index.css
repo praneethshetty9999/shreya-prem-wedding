@@ -5,6 +5,11 @@
      files for yet. Fallbacks below stand in until real files/license
      are provided — see feedback memory. */
   --font-heading: 'DIN', 'Arial Narrow', sans-serif;
+  /* Stand-in for DIN Condensed (also unlicensed/no file on hand) — Oswald is
+     a free, visually close condensed sans. Used only where DIN Condensed was
+     specifically requested (hero SAVE THE DATE / SHREYA / PREM), not the
+     general heading font above. */
+  --font-heading-condensed: 'Oswald', 'Arial Narrow', sans-serif;
   --font-label: 'Source Code Pro', ui-monospace, Consolas, monospace;
   --font-timer: 'Argentum Sans', 'Helvetica Neue', Arial, sans-serif;
 

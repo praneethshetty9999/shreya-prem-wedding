@@ -45,8 +45,8 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         variants={fadeUp}
         className="cursor-pointer text-center"
       >
-        {/* Figma: DIN Bold 39.53px / 100% line-height / 1% letter-spacing */}
-        <h1 className="font-heading text-xl font-bold leading-none tracking-[0.01em] text-heading sm:text-3xl lg:text-[39.53px]">
+        {/* Figma: DIN Condensed Bold 39.53px / 100% line-height / 1% letter-spacing */}
+        <h1 className="font-heading-condensed text-xl font-bold leading-none tracking-[0.01em] text-heading sm:text-3xl lg:text-[39.53px]">
           SAVE THE DATE
         </h1>
         {/* Figma: DIN Bold 32px / 100% / 0% */}
@@ -86,11 +86,11 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
           <img src="/Logo.png" alt="" className="h-full w-full" />
         </div>
 
-        {/* Figma: DIN Bold 55.04px / 100% / 0% */}
-        <h2 className="font-heading absolute bottom-[3%] left-0 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        {/* Figma: DIN Condensed Bold 55.04px / 100% / 0% */}
+        <h2 className="font-heading-condensed absolute bottom-[3%] left-0 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerOne}
         </h2>
-        <h2 className="font-heading absolute bottom-[3%] right-0 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute bottom-[3%] right-0 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerTwo}
         </h2>
       </motion.div>
@@ -103,13 +103,13 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         variants={fadeUp}
         className="flex items-center justify-center gap-3 sm:hidden"
       >
-        <h2 className="font-heading text-3xl font-bold uppercase text-[#F4EEDB]">
+        <h2 className="font-heading-condensed text-3xl font-bold uppercase text-[#F4EEDB]">
           {COUPLE.partnerOne}
         </h2>
         <span aria-hidden="true" className="font-heading text-2xl font-bold text-[#F4EEDB]">
           &amp;
         </span>
-        <h2 className="font-heading text-3xl font-bold uppercase text-[#F4EEDB]">
+        <h2 className="font-heading-condensed text-3xl font-bold uppercase text-[#F4EEDB]">
           {COUPLE.partnerTwo}
         </h2>
       </motion.div>

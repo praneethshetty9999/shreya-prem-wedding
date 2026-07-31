@@ -1,12 +1,5 @@
 import { motion } from 'framer-motion'
-import { figureCropStyle } from '../../lib/figureCrop'
 import { ArrowRightIcon } from '../rsvp/icons'
-
-// The elephant stamp is cropped straight out of the landing mock art.
-const STAMP_CROP = figureCropStyle({
-  src: '/landing-page.png',
-  figureBox: { left: 84.2, top: 5.8, width: 10.8, height: 18 },
-})
 
 export function LandingPage({ onEnter }) {
   return (
@@ -18,11 +11,12 @@ export function LandingPage({ onEnter }) {
       className="relative flex min-h-svh items-center bg-cover bg-center"
       style={{ backgroundImage: "url('/rsvp-background.png')" }}
     >
-      {/* Elephant postage stamp */}
-      <div
+      {/* Jaipur postage stamp */}
+      <img
+        src="/Postal Stamp Jaipur  1.png"
+        alt=""
         aria-hidden="true"
         className="absolute right-[6%] top-[6%] w-24 sm:w-32 lg:w-36"
-        style={{ ...STAMP_CROP, aspectRatio: '144 / 174' }}
       />
 
       {/* Postcard center divider */}
@@ -36,7 +30,7 @@ export function LandingPage({ onEnter }) {
         <div className="w-full max-w-xl">
           <div className="font-label text-base text-[#7c3b24] sm:text-lg lg:text-xl">
             <p className="border-b border-dashed border-[#b98d4f] pb-2 text-right">
-              With hearts full of love and joy,
+              With hearts full of love,
             </p>
             <p className="border-b border-dashed border-[#b98d4f] pb-2 pt-3 text-right">
               we invite you to join us as we begin

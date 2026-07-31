@@ -15,9 +15,9 @@ const EVENTS = [
     date: 'March 3rd',
     bg: '#da9d3f',
     theme: 'dark',
-    figureBox: { left: 57.9, top: 13.4, width: 34.4, height: 66.6 },
-    figureNotch: { corner: 'top-right', width: 14, height: 5 },
-    figureAspect: 0.8245,
+    figureBox: { left: 57.9, top: 4, width: 42, height: 75.6 },
+    figureNotch: { corner: 'top-right', width: 40, height: 30 },
+    figureAspect: 0.8868,
     description:
       'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). Placeholder text — full details coming soon.',
     facts: [
@@ -34,9 +34,9 @@ const EVENTS = [
     date: 'March 4th',
     bg: '#db595a',
     theme: 'light',
-    figureBox: { left: 54.4, top: 10.58, width: 44.1, height: 73.67 },
-    figureNotch: { corner: 'top-right', width: 27, height: 8 },
-    figureAspect: 0.9556,
+    figureBox: { left: 54.4, top: 2, width: 45.5, height: 82.25 },
+    figureNotch: { corner: 'top-right', width: 45, height: 25 },
+    figureAspect: 0.883,
     description:
       'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. Placeholder text — full details coming soon.',
     facts: [
@@ -121,7 +121,7 @@ export function EventDetailsSection() {
             key={event.id}
             event={event}
             onOpen={setActiveEvent}
-            className={`mx-auto w-[85%] md:w-[86%] ${event.position}`}
+            className={`mx-auto w-[85%] self-start md:w-[86%] ${event.position}`}
           />
         ))}
 

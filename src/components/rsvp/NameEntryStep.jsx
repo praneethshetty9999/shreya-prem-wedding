@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { RSVP_DEADLINE, SAVE_THE_DATE_RANGE } from '../../lib/constants'
 import { figureCropStyle } from '../../lib/figureCrop'
-import { BackButton } from './BackButton'
 import { ArrowRightIcon } from './icons'
 
 // The hand-painted gold underline, cropped out of the original frame art so
@@ -11,7 +10,7 @@ const UNDERLINE_CROP = figureCropStyle({
   figureBox: { left: 28, top: 77.2, width: 42.5, height: 4.2 },
 })
 
-export function NameEntryStep({ value, onChange, onSubmit, onBack }) {
+export function NameEntryStep({ value, onChange, onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault()
     onSubmit()
@@ -26,8 +25,6 @@ export function NameEntryStep({ value, onChange, onSubmit, onBack }) {
       className="relative flex min-h-svh items-center justify-center bg-terracotta bg-cover bg-center p-4 sm:p-10"
       style={{ backgroundImage: "url('/rust-background.png')" }}
     >
-      <BackButton onClick={onBack} />
-
       {/* Rust border shows ~5% each side, ~10% top/bottom; sharp corners. */}
       <div
         className="relative aspect-[1009/543] w-full bg-cover bg-center shadow-2xl sm:aspect-auto sm:h-[80svh] sm:w-[90vw]"
