@@ -10,6 +10,7 @@
      specifically requested (hero SAVE THE DATE / SHREYA / PREM), not the
      general heading font above. */
   --font-heading-condensed: 'DIN Condensed', 'DINCondensed', sans-serif;
+  --font-heading-alternate: 'DIN Alternate', 'DINAlternate', sans-serif;
   --font-label: 'Source Code Pro', ui-monospace, Consolas, monospace;
   --font-timer: 'Argentum Sans', 'Helvetica Neue', Arial, sans-serif;
 

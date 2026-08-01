@@ -46,11 +46,11 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         className="cursor-pointer text-center"
       >
         {/* Figma: DIN Condensed Bold 39.53px / 100% line-height / 1% letter-spacing */}
-        <h1 className="font-heading-condensed text-xl font-bold leading-none tracking-[0.01em] text-heading sm:text-3xl lg:text-[39.53px]">
+        <h1 className="font-heading-condensed text-xl font-bold leading-none tracking-[0.01em] text-heading sm:text-3xl lg:text-[36.52px]">
           SAVE THE DATE
         </h1>
         {/* Figma: DIN Bold 32px / 100% / 0% */}
-        <p className="font-heading mt-2 text-base font-bold leading-none text-heading sm:text-xl lg:text-[32px]">
+        <p className="font-heading-condensed mt-2 text-base font-bold leading-none text-heading sm:text-xl lg:text-[36.52px]">
           {SAVE_THE_DATE_RANGE}
         </p>
       </motion.button>
@@ -92,10 +92,10 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         {/* top-1/2 -translate-y-1/2: centered on the logo's own vertical
             center line, not just offset up from the bottom. */}
         {/* Figma: DIN Condensed Bold 55.04px / 100% / 0% */}
-        <h2 className="font-heading-condensed absolute left-0 top-1/2 -translate-y-1/2 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute left-0 top-1/2 -translate-x-4 -translate-y-1/2 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerOne}
         </h2>
-        <h2 className="font-heading-condensed absolute right-0 top-1/2 -translate-y-1/2 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerTwo}
         </h2>
       </motion.div>

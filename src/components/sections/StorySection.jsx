@@ -54,7 +54,7 @@ export function StorySection({ onOpenOurStory = () => {} }) {
 
       {/* Figma: DIN Bold 16px / 0% letter-spacing, line-height bumped to 115%
           per feedback, color #B70000, one-line paragraph gaps, two-line sign-off. */}
-      <div className="font-heading order-2 text-center text-base font-bold leading-[1.5] text-[#B70000] md:text-left">
+      <div className="font-heading-alternate order-2 text-center text-base font-bold leading-[1.5] text-[#B70000] md:text-left">
         <p>
           Welcome! We are so happy you're here. As you've probably heard by now, we are getting married!
         </p>

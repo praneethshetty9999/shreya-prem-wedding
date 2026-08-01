@@ -26,7 +26,7 @@ export function ChapterFrame({ photos = [], className = '' }) {
   }
 
   return (
-    <div onMouseEnter={handleMouseEnter} className={`relative aspect-[52/69] w-full ${className}`}>
+    <div onMouseEnter={handleMouseEnter} className={`relative h-[338.63px] w-[225.51px] ${className}`}>
       <div className="absolute inset-0" style={MASK_STYLE}>
         {photos.map((src, index) => (
           <img

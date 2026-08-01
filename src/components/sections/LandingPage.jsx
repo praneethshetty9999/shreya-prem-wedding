@@ -20,24 +20,29 @@ export function LandingPage({ onEnter }) {
       />
 
       {/* Postcard center divider */}
-      <div
+      <img
+        src="/vertical.png"
+        alt=""
         aria-hidden="true"
-        className="absolute left-1/2 top-[19%] hidden h-[62%] border-l border-dashed border-[#b98d4f]/70 md:block"
+        className="absolute left-1/2 top-[19%] hidden h-[62%] w-auto -translate-x-1/2 md:block"
       />
 
       {/* Right half of the postcard */}
       <div className="flex w-full justify-center px-6 md:w-1/2 md:translate-x-full md:px-12 lg:px-20">
         <div className="w-full max-w-xl">
           <div className="font-label text-base text-[#7c3b24] sm:text-lg lg:text-xl">
-            <p className="border-b border-dashed border-[#b98d4f] pb-2 text-right">
-              With hearts full of love,
-            </p>
-            <p className="border-b border-dashed border-[#b98d4f] pb-2 pt-3 text-right">
-              we invite you to join us as we begin
-            </p>
-            <p className="border-b border-dashed border-[#b98d4f] pb-2 pt-3 text-right tracking-widest">
-              OUR FOREVER.
-            </p>
+            <p className="text-right">With hearts full of love,</p>
+            <div className="h-2 overflow-hidden">
+              <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+            </div>
+            <p className="pt-1 text-right">we invite you to join us as we begin</p>
+            <div className="h-2 overflow-hidden">
+              <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+            </div>
+            <p className="pt-1 text-right tracking-widest">OUR FOREVER.</p>
+            <div className="h-2 overflow-hidden">
+              <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+            </div>
           </div>
 
           <div className="mt-10 flex justify-end">
