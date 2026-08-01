@@ -37,6 +37,45 @@ async function isAuthed(request, secret) {
   return timingSafeEqual(expected, signature)
 }
 
+// Cloudflare Pages' static asset handler doesn't reliably forward byte-range
+// requests through a Function — a plain `next()` for /Video.mp4 comes back
+// as a full 200 even when the browser's <video> scrubber asked for a slice,
+// which breaks seeking to an unbuffered point in the timeline. Since the
+// video still needs to stay behind the password gate (unlike the exempted
+// images above), we fetch the full asset once here and slice it ourselves
+// into a proper 206 Partial Content response instead of exempting the route.
+async function serveRangeableVideo(request, next) {
+  const response = await next()
+  if (response.status !== 200) return response // already partial, or an error — pass through
+
+  const rangeHeader = request.headers.get('Range')
+  const buffer = await response.arrayBuffer()
+  const size = buffer.byteLength
+  const headers = new Headers(response.headers)
+  headers.set('Accept-Ranges', 'bytes')
+
+  if (!rangeHeader) {
+    return new Response(buffer, { status: 200, headers })
+  }
+
+  const match = /bytes=(\d*)-(\d*)/.exec(rangeHeader)
+  if (!match || (!match[1] && !match[2])) {
+    return new Response(buffer, { status: 200, headers })
+  }
+
+  let start = match[1] ? Number(match[1]) : 0
+  let end = match[2] ? Number(match[2]) : size - 1
+  if (Number.isNaN(start) || Number.isNaN(end) || start > end || start >= size) {
+    headers.set('Content-Range', `bytes */${size}`)
+    return new Response(null, { status: 416, headers })
+  }
+  end = Math.min(end, size - 1)
+
+  headers.set('Content-Range', `bytes ${start}-${end}/${size}`)
+  headers.set('Content-Length', String(end - start + 1))
+  return new Response(buffer.slice(start, end + 1), { status: 206, headers })
+}
+
 // Gates every request — HTML, JS bundle, images — behind a signed cookie, so
 // the protected content is never served to the browser at all, not just
 // hidden behind client-side React state. Only the login page and its auth
@@ -61,6 +100,9 @@ export async function onRequest(context) {
   }
 
   if (await isAuthed(request, env.SITE_AUTH_SECRET)) {
+    if (url.pathname === '/Video.mp4') {
+      return serveRangeableVideo(request, next)
+    }
     return next()
   }
 

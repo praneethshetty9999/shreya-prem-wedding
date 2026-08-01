@@ -15,7 +15,7 @@ export function PalaceSection() {
         src="/logo2.png"
         alt=""
         aria-hidden="true"
-        className="absolute right-[10%] top-0 z-0 w-[65%] md:right-[9%] md:top-[0.5%] md:w-[42%]"
+        className="absolute -top-[2%] right-[6%] z-0 w-[65%] md:right-[9%] md:top-[0.5%] md:w-[42%]"
       />
       <img
         src="/Palace.png"

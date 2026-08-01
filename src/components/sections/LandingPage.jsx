@@ -30,7 +30,7 @@ export function LandingPage({ onEnter }) {
       {/* Right half of the postcard */}
       <div className="flex w-full justify-center px-6 md:w-1/2 md:translate-x-full md:px-12 lg:px-20">
         <div className="w-full max-w-xl">
-          <div className="font-label text-base text-[#7c3b24] sm:text-lg lg:text-xl">
+          <div className="font-label text-base text-[#B87A36] sm:text-lg lg:text-xl">
             <p className="text-right">With hearts full of love,</p>
             <div className="h-2 overflow-hidden">
               <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
@@ -49,7 +49,7 @@ export function LandingPage({ onEnter }) {
             <button
               type="button"
               onClick={onEnter}
-              className="font-label flex items-center gap-2 rounded-full border border-vermillion px-7 py-2.5 text-lg text-vermillion transition-colors hover:bg-vermillion/10"
+              className="font-label flex items-center gap-2 rounded-full border border-[#BE452A] px-7 py-2.5 text-lg text-[#BE452A] transition-colors hover:bg-[#BE452A]/10"
             >
               Enter
               <ArrowRightIcon className="h-5 w-5" />

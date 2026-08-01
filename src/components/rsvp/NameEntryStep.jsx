@@ -24,20 +24,26 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
       className="relative flex min-h-svh items-center justify-center bg-terracotta bg-cover bg-center p-4 sm:p-10"
       style={{ backgroundImage: "url('/rust-background.png')" }}
     >
-      {/* Rust border shows ~5% each side, ~10% top/bottom; sharp corners. */}
+      {/* h-[85svh]: the old aspect-[1009/543] (~5% side / ~10% top-bottom
+          rust border) rendered barely 190px tall on a phone-width screen —
+          nowhere near enough room for the stack of absolutely-positioned
+          text below it, so everything overlapped. Sizing off viewport
+          height instead, the same way the sm+ card already does, keeps the
+          card tall enough at any width; bg-cover on rust-background.png
+          still crops to fit without stretching either way. */}
       <div
-        className="relative aspect-[1009/543] w-full bg-cover bg-center shadow-2xl sm:aspect-auto sm:h-[80svh] sm:w-[90vw]"
+        className="relative h-[85svh] w-full bg-cover bg-center shadow-2xl sm:h-[80svh] sm:w-[90vw]"
         style={{ backgroundImage: "url('/rsvp-background.png')" }}
       >
         <h2
-        className="absolute font-heading-condensed top-[20%] w-full text-center text-[19.2px] font-semibold leading-none tracking-[-0.02em] text-vermillion sm:text-[38.4px] lg:text-[54.18px]"
+        className="absolute font-heading-condensed top-[26%] w-full text-center text-[19.2px] font-semibold leading-none tracking-[-0.02em] text-vermillion sm:top-[20%] sm:text-[38.4px] lg:text-[54.18px]"
         style={{ transform: 'scaleX(0.88) scaleY(1.2)' }}
       >
         Please RSVP by
       </h2>
 
       <p
-        className="absolute font-heading-condensed top-[32%] w-full text-center text-[9.6px] font-semibold leading-none tracking-[-0.02em] text-vermillion sm:text-[16px] lg:text-[35.79px]"
+        className="absolute font-heading-condensed top-[38%] w-full text-center text-[9.6px] font-semibold leading-none tracking-[-0.02em] text-vermillion sm:top-[32%] sm:text-[16px] lg:text-[35.79px]"
         style={{ transform: 'scaleX(0.88) scaleY(1.2)' }}
       >
         {RSVP_DEADLINE.replace('July', 'JULY')}
@@ -47,18 +53,18 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
           src="/Flower.png"
           alt=""
           aria-hidden="true"
-          className="absolute left-[12%] top-[51%] w-[10.8%]"
+          className="absolute left-[12%] top-[51%] hidden w-[10.8%] sm:block"
         />
         <img
           src="/Flower.png"
           alt=""
           aria-hidden="true"
-          className="absolute right-[12%] top-[51%] w-[10.8%]"
+          className="absolute right-[12%] top-[51%] hidden w-[10.8%] sm:block"
         />
 
         <form
           onSubmit={handleSubmit}
-          className="absolute left-1/2 top-[66%] w-[52%] max-w-xl -translate-x-1/2"
+          className="absolute left-1/2 top-[80%] w-[85%] max-w-xl -translate-x-1/2 sm:top-[66%] sm:w-[52%]"
         >
           <div className="flex items-center px-1">
             <input
@@ -68,7 +74,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
               placeholder="Your name & guest name (e.g. Rahul & Priya)"
               autoFocus
               aria-label="Your name"
-              className="font-label w-full bg-transparent text-[24px] font-normal leading-none tracking-normal text-terracotta placeholder:text-[20px] placeholder:text-[#cf9d3f] focus:outline-none"
+              className="font-label w-full bg-transparent text-[13px] font-normal leading-none tracking-normal text-terracotta placeholder:text-[11px] placeholder:text-[#cf9d3f] focus:outline-none sm:text-[24px] sm:placeholder:text-[20px]"
             />
             <button type="submit" className="sr-only">
               Submit
