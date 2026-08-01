@@ -21,7 +21,7 @@ export function NameSelectStep({ matches, onSelect }) {
         </ul>
       ) : (
         <div className="mt-6 flex flex-col items-center gap-4">
-          <img src="/notfound-dog.png" alt="" aria-hidden="true" className="w-28" />
+          <img src="/Postal Stamp Jaipur  1.png" alt="" aria-hidden="true" className="w-28" />
           <p className="font-label text-sm text-terracotta">
             No matching names found.
             <br />

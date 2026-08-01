@@ -74,11 +74,14 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         variants={fadeUp}
         className="relative mx-auto hidden h-[383px] w-full max-w-5xl sm:block lg:h-[430px]"
       >
+        {/* Vertically centered on the full "SAVE THE DATE" + "March 3rd'27"
+            block above (measured midpoint of that two-line button, not just
+            guessed) rather than sitting at the circle's own top edge. */}
         {/* Figma: Source Code Pro Medium 24.06px / 100% / 0% */}
-        <span className="font-label absolute left-0 top-0 text-xl font-medium leading-none text-label lg:text-[24.06px]">
+        <span className="font-label absolute left-0 top-[-71px] text-xl font-medium leading-none text-label lg:top-[-84px] lg:text-[24.06px]">
           click date
         </span>
-        <span className="font-label absolute right-0 top-0 text-right text-xl font-medium leading-none text-label lg:text-[24.06px]">
+        <span className="font-label absolute right-0 top-[-71px] text-right text-xl font-medium leading-none text-label lg:top-[-84px] lg:text-[24.06px]">
           to RSVP
         </span>
 
@@ -86,11 +89,13 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
           <img src="/Logo.png" alt="" className="h-full w-full" />
         </div>
 
+        {/* top-1/2 -translate-y-1/2: centered on the logo's own vertical
+            center line, not just offset up from the bottom. */}
         {/* Figma: DIN Condensed Bold 55.04px / 100% / 0% */}
-        <h2 className="font-heading-condensed absolute bottom-[22%] left-0 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute left-0 top-1/2 -translate-y-1/2 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerOne}
         </h2>
-        <h2 className="font-heading-condensed absolute bottom-[22%] right-0 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
+        <h2 className="font-heading-condensed absolute right-0 top-1/2 -translate-y-1/2 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
           {COUPLE.partnerTwo}
         </h2>
       </motion.div>

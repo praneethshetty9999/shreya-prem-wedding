@@ -11,12 +11,25 @@ export function VideoSection() {
           className="hidden w-36 md:block lg:w-52"
         />
 
-        <div
-          role="img"
-          aria-label="Video placeholder"
-          className="aspect-[490/353] w-[80%] max-w-lg rounded-2xl bg-cover bg-center shadow-xl sm:w-[65%] md:w-[48%]"
-          style={{ backgroundImage: "url('/red-rectangle.png')" }}
-        />
+        {/* Straight from public/ (like every other media asset here) so Vite
+            copies it into dist/ untouched — no re-encoding, no size limit
+            from Vite's own asset pipeline (that only applies to imported
+            assets, not public/ passthrough files). preload="metadata" keeps
+            the initial page load light: only duration/dimensions load
+            up front, the full file streams in once playback starts.
+            min-w-0: a <video>, unlike the plain <div> it replaces, has an
+            intrinsic width (624px, from the file's own resolution) that
+            flex items don't shrink below by default — without this it was
+            blowing out the row past the viewport at md/lg widths. */}
+        <video
+          src="/Video.mp4"
+          controls
+          playsInline
+          preload="metadata"
+          className="aspect-[490/353] w-[80%] max-w-lg min-w-0 rounded-2xl bg-black object-cover shadow-xl sm:w-[65%] md:w-[48%]"
+        >
+          Your browser doesn&apos;t support embedded video.
+        </video>
 
         <img
           src="/Flower.png"

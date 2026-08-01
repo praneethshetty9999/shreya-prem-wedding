@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { RSVP_DEADLINE, SAVE_THE_DATE_RANGE } from '../../lib/constants'
+import { RSVP_DEADLINE } from '../../lib/constants'
 import { figureCropStyle } from '../../lib/figureCrop'
 import { ArrowRightIcon } from './icons'
 
@@ -30,11 +30,11 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
         className="relative aspect-[1009/543] w-full bg-cover bg-center shadow-2xl sm:aspect-auto sm:h-[80svh] sm:w-[90vw]"
         style={{ backgroundImage: "url('/rsvp-background.png')" }}
       >
-        {/* Figma: DIN Medium 62px */}
-        <h2 className="font-heading absolute top-[15%] w-full text-center text-2xl font-medium leading-none text-vermillion sm:text-5xl lg:text-[62px]">
+        {/* Figma: DIN Medium 62px — using the DIN Condensed stand-in per feedback */}
+        <h2 className="font-heading-condensed absolute top-[15%] w-full text-center text-2xl font-medium leading-none text-vermillion sm:text-5xl lg:text-[62px]">
           Please RSVP by
         </h2>
-        {/* Figma: Source Code Pro Medium 29px */}
+        {/* Figma: Source Code Pro Medium 29px — using the DIN Condensed stand-in per feedback */}
         <p className="font-label absolute top-[33%] w-full text-center text-xs font-medium leading-none tracking-[0.08em] text-vermillion sm:text-xl lg:text-[29px]">
           {RSVP_DEADLINE.replace('July', 'JULY')}
         </p>
@@ -62,7 +62,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
               type="text"
               value={value}
               onChange={(event) => onChange(event.target.value)}
-              placeholder="Enter your name"
+              placeholder="Your name & guest name"
               autoFocus
               aria-label="Your name"
               className="w-full bg-transparent font-serif text-sm text-terracotta placeholder:text-[#cf9d3f] focus:outline-none sm:text-2xl"
@@ -85,7 +85,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
         <p className="font-timer absolute left-1/2 top-[79%] w-[70%] -translate-x-1/2 text-center text-[10px] tracking-wide text-coral sm:text-lg lg:text-xl">
           We request your attendance for all three days of our
           <br />
-          celebration: {SAVE_THE_DATE_RANGE}
+          celebration: 3-6, 2027
         </p>
       </div>
     </motion.section>
