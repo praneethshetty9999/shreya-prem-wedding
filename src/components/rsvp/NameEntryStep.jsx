@@ -29,18 +29,12 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
         className="relative aspect-[1009/543] w-full bg-cover bg-center shadow-2xl sm:aspect-auto sm:h-[80svh] sm:w-[90vw]"
         style={{ backgroundImage: "url('/rsvp-background.png')" }}
       >
-        <h2
-        className="absolute font-heading-condensed top-[20%] w-full text-center text-[19.2px] font-semibold leading-none tracking-[-0.02em] text-vermillion sm:text-[38.4px] lg:text-[54.18px]"
-        style={{ transform: 'scaleX(0.88) scaleY(1.2)' }}
-      >
+        <h2 className="absolute font-heading-condensed top-[23%] w-full text-center text-[24px] font-bold leading-none tracking-[0.01em] text-vermillion sm:text-[48px] lg:text-[67.72px]">
         Please RSVP by
       </h2>
 
-      <p
-        className="absolute font-heading-condensed top-[32%] w-full text-center text-[9.6px] font-semibold leading-none tracking-[-0.02em] text-vermillion sm:text-[16px] lg:text-[35.79px]"
-        style={{ transform: 'scaleX(0.88) scaleY(1.2)' }}
-      >
-        {RSVP_DEADLINE.replace('July', 'JULY')}
+      <p className="absolute font-heading-condensed top-[35%] w-full text-center text-[24px] font-bold leading-none tracking-[0.01em] text-vermillion sm:text-[48px] lg:text-[67.72px]">
+        {RSVP_DEADLINE.replace('September', 'SEPTEMBER')}
       </p>
 
         <img
@@ -85,7 +79,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
           className="font-label absolute left-1/2 top-[5%] w-[70%] -translate-x-1/2 text-center text-base font-medium tracking-wide"
           style={{ color: '#594F1A' }}
         >
-          <span className="italic">
+          <span>
             We request your attendance for all three days of our celebration:
           </span>
           <br />

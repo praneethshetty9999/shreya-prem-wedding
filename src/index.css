@@ -4,15 +4,29 @@
   /* TODO: 'DIN' and 'Argentum Sans' are commercial fonts we don't have
      files for yet. Fallbacks below stand in until real files/license
      are provided — see feedback memory. */
-  --font-heading: 'DIN', 'Arial Narrow', sans-serif;
+  --font-heading: 'DIN', 'Oswald', 'Arial Narrow', sans-serif;
   /* Stand-in for DIN Condensed (also unlicensed/no file on hand) — Oswald is
-     a free, visually close condensed sans. Used only where DIN Condensed was
-     specifically requested (hero SAVE THE DATE / SHREYA / PREM), not the
-     general heading font above. */
-  --font-heading-condensed: 'DIN Condensed', 'DINCondensed', sans-serif;
-  --font-heading-alternate: 'DIN Alternate', 'DINAlternate', sans-serif;
+     a free, visually close condensed sans, loaded via Google Fonts in
+     index.html. It has to be listed here (not just loaded) to actually be
+     used — 'DIN Condensed'/'DINCondensed' aren't real fonts anyone's
+     browser has, so without Oswald in the stack this silently fell back to
+     the browser's default sans-serif instead. Used only where DIN Condensed
+     was specifically requested (hero SAVE THE DATE / SHREYA / PREM), not
+     the general heading font above. */
+  --font-heading-condensed: 'DIN Condensed', 'DINCondensed', 'Oswald', sans-serif;
+  --font-heading-alternate: 'DIN Alternate', 'DINAlternate', 'Oswald', sans-serif;
   --font-label: 'Source Code Pro', ui-monospace, Consolas, monospace;
   --font-timer: 'Argentum Sans', 'Helvetica Neue', Arial, sans-serif;
+  /* Hero-only: the flattened text in Section 1.svg (SAVE THE DATE / date /
+     SHREYA / PREM) has the truncated-apex "A" and tight aperture that's
+     characteristic of the real DIN Condensed used in that Figma export —
+     Bebas Neue is the closest free match (verified against the SVG glyph
+     shapes directly), noticeably closer than Oswald's rounder, pointed-apex
+     forms. Kept separate from font-heading-condensed rather than swapped in
+     there globally: Bebas Neue is unicase (no real lowercase), which would
+     wrongly force the RSVP page's mixed-case "Please RSVP by" into all-caps
+     letterforms if applied site-wide. */
+  --font-hero-condensed: 'Bebas Neue', 'Oswald', sans-serif;
 
   --color-terracotta: #be4e2c;
   --color-terracotta-dark: #a3421f;

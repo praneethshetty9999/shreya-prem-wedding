@@ -11,7 +11,6 @@ import { VideoSection } from './components/sections/VideoSection'
 import { FAQOverlay } from './components/ui/FAQOverlay'
 import { HamburgerMenu } from './components/ui/HamburgerMenu'
 import { ItineraryBadge } from './components/ui/ItineraryBadge'
-import { ItineraryModal } from './components/ui/ItineraryModal'
 import { OurStoryOverlay } from './components/ui/OurStoryOverlay'
 import { TravelOverlay } from './components/ui/TravelOverlay'
 
@@ -43,8 +42,6 @@ function App() {
     }
     return skipLanding
   })
-  const [isItineraryOpen, setIsItineraryOpen] = useState(false)
-
   // /rsvp and /our-story are real routes (not just component state) so the
   // browser's own back button closes them instead of leaving the app
   // entirely and re-triggering the password gate. See feedback: back button
@@ -55,47 +52,33 @@ function App() {
   const isFaqOpen = location.pathname === '/faq'
   const isTravelOpen = location.pathname === '/travel'
 
-  // "Homepage" needs to back out of whatever's open (RSVP, Our Story,
-  // itinerary popup) — not just scroll — since any of those can be the
-  // active screen when the hamburger is used.
+  // "Homepage" needs to back out of whatever's open (RSVP, Our Story, FAQ,
+  // Travel) — not just scroll — since any of those can be the active screen
+  // when the hamburger is used.
   function goHome() {
     navigate('/')
-    setIsItineraryOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // The itinerary popup is a fixed, full-screen overlay rendered
-  // independently of the route — if it was left open when RSVP or Our Story
-  // opened, it'd sit on top of (and hide) the screen underneath. Opening
-  // either of those has to close it.
   function openRsvp() {
-    setIsItineraryOpen(false)
     navigate('/rsvp')
   }
   function openOurStory() {
-    setIsItineraryOpen(false)
     navigate('/our-story')
   }
-  function openItinerary() {
-    if (location.pathname !== '/') navigate('/')
-    setIsItineraryOpen(true)
-  }
   function openFAQ() {
-    setIsItineraryOpen(false)
     navigate('/faq')
   }
   function openTravel() {
-    setIsItineraryOpen(false)
     navigate('/travel')
   }
 
   return (
     <>
       {/* Every screen except the landing postcard gets the hamburger — it
-          renders once here, above the RSVP flow and the story/itinerary
-          overlays alike, instead of being tied to any one of them. The
-          itinerary badge itself opens the itinerary popup, so it has no
-          purpose (and no room) on the RSVP flow. */}
+          renders once here, above the RSVP flow and the story/FAQ/travel
+          overlays alike, instead of being tied to any one of them. The FAQ
+          badge has no purpose (and no room) on the RSVP flow. */}
       {hasEntered && (
         <>
           <HamburgerMenu
@@ -106,7 +89,7 @@ function App() {
             onOpenRsvp={openRsvp}
             iconColorClassName={isFaqOpen || isTravelOpen ? 'bg-[#F43511]' : 'bg-cream'}
           />
-          {!isRsvpOpen && <ItineraryBadge onClick={openItinerary} />}
+          {!isRsvpOpen && <ItineraryBadge onClick={openFAQ} />}
         </>
       )}
 
@@ -153,7 +136,6 @@ function App() {
         {isOurStoryOpen && <OurStoryOverlay onClose={() => navigate('/')} />}
         {isFaqOpen && <FAQOverlay onClose={() => navigate('/')} />}
         {isTravelOpen && <TravelOverlay onClose={() => navigate('/')} />}
-        {isItineraryOpen && <ItineraryModal onClose={() => setIsItineraryOpen(false)} />}
       </AnimatePresence>
     </>
   )

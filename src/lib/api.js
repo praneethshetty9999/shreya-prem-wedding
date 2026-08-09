@@ -6,11 +6,33 @@ export async function fetchGuestList() {
   return response.json()
 }
 
-export async function submitRsvp({ name, primaryMobile, secondaryMobile, address, dietaryRestrictions }) {
+export async function submitRsvp({
+  name,
+  primaryMobile,
+  secondaryMobile,
+  streetAddress,
+  aptSuite,
+  city,
+  state,
+  country,
+  zipCode,
+  dietaryRestrictions,
+}) {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, primaryMobile, secondaryMobile, address, dietaryRestrictions }),
+    body: JSON.stringify({
+      name,
+      primaryMobile,
+      secondaryMobile,
+      streetAddress,
+      aptSuite,
+      city,
+      state,
+      country,
+      zipCode,
+      dietaryRestrictions,
+    }),
   })
   if (!response.ok) throw new Error('Failed to submit RSVP')
   return response.json()

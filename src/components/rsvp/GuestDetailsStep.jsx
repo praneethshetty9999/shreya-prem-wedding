@@ -27,14 +27,20 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
   const [primaryPhone, setPrimaryPhone] = useState('')
   const [secondaryCode, setSecondaryCode] = useState('+1')
   const [secondaryPhone, setSecondaryPhone] = useState('')
-  const [street, setStreet] = useState('')
+  const [streetAddress, setStreetAddress] = useState('')
+  const [aptSuite, setAptSuite] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
+  const [country, setCountry] = useState('')
+  const [zipCode, setZipCode] = useState('')
   const [dietary, setDietary] = useState('')
 
   const isPhoneValid = primaryPhone.length >= 7 && primaryPhone.length <= 12
   const isComplete =
-    isPhoneValid && [street, city, state].every((value) => value.trim().length > 0)
+    isPhoneValid &&
+    [streetAddress, aptSuite, city, state, country, zipCode].every(
+      (value) => value.trim().length > 0
+    )
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -44,7 +50,12 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
     onSubmit({
       primaryMobile: `'${primaryCode} ${primaryPhone}`,
       secondaryMobile: secondaryPhone ? `'${secondaryCode} ${secondaryPhone}` : '',
-      address: `${street.trim()}, ${city.trim()}, ${state.trim()}`,
+      streetAddress: streetAddress.trim(),
+      aptSuite: aptSuite.trim(),
+      city: city.trim(),
+      state: state.trim(),
+      country: country.trim(),
+      zipCode: zipCode.trim(),
       dietaryRestrictions: dietary.trim(),
     })
   }
@@ -77,7 +88,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
           onCodeChange={setSecondaryCode}
           phone={secondaryPhone}
           onPhoneChange={setSecondaryPhone}
-          placeholder="Secondary Mobile Number"
+          placeholder="Second Guest Mobile Number"
         />
         {primaryPhone.length > 0 && !isPhoneValid && (
           <p className="font-label text-xs text-red-600">Please enter a valid phone number.</p>
@@ -86,8 +97,15 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
         <input
           type="text"
           placeholder="Street Address*"
-          value={street}
-          onChange={(event) => setStreet(event.target.value)}
+          value={streetAddress}
+          onChange={(event) => setStreetAddress(event.target.value)}
+          className={fieldClass}
+        />
+        <input
+          type="text"
+          placeholder="Apt/Suite*"
+          value={aptSuite}
+          onChange={(event) => setAptSuite(event.target.value)}
           className={fieldClass}
         />
         <div className="grid grid-cols-2 gap-3">
@@ -106,9 +124,25 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
             className={fieldClass}
           />
         </div>
+        <div className="grid grid-cols-2 gap-3">
+          <input
+            type="text"
+            placeholder="Country*"
+            value={country}
+            onChange={(event) => setCountry(event.target.value)}
+            className={fieldClass}
+          />
+          <input
+            type="text"
+            placeholder="Zip code*"
+            value={zipCode}
+            onChange={(event) => setZipCode(event.target.value)}
+            className={fieldClass}
+          />
+        </div>
         <input
           type="text"
-          placeholder="Any dietary restrictions..."
+          placeholder="Any dietary restrictions?"
           value={dietary}
           onChange={(event) => setDietary(event.target.value)}
           className={fieldClass}

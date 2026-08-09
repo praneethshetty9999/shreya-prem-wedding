@@ -33,7 +33,7 @@ export function RSVPResultModal({
             role="dialog"
             aria-modal="true"
             onClick={(event) => event.stopPropagation()}
-            className="max-h-[85vh] w-full max-w-md cursor-auto overflow-y-auto rounded-3xl border border-vermillion bg-rsvp-cream bg-cover bg-center p-8 text-center shadow-2xl"
+            className="max-h-[97vh] w-full max-w-md cursor-auto overflow-y-auto rounded-3xl border border-vermillion bg-rsvp-cream bg-cover bg-center p-8 text-center shadow-2xl"
             style={{ backgroundImage: "url('/rsvp-background.png')" }}
           >
             {step === 'SELECT_NAME' && (
