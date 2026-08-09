@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { SAVE_THE_DATE_RANGE } from '../../lib/constants'
 import { ArrowRightIcon } from './icons'
 
 const fadeUp = {
@@ -21,14 +20,15 @@ export function ConfirmationStep({ onBack }) {
       className="relative flex min-h-svh flex-col items-center justify-center gap-6 bg-cover bg-center px-6 py-12 text-center"
       style={{ backgroundImage: "url('/rsvp-background.png')" }}
     >
-      <motion.div initial="hidden" animate="visible" custom={0.15} variants={fadeUp}>
-        <h1 className="font-heading text-3xl font-bold tracking-wide text-[#E0492B] sm:text-5xl">
-          SAVE THE DATE!
-        </h1>
-        <p className="font-heading mt-2 text-2xl font-bold tracking-wide text-[#E0492B] sm:text-4xl">
-          {SAVE_THE_DATE_RANGE}
-        </p>
-      </motion.div>
+      <motion.img
+        initial="hidden"
+        animate="visible"
+        custom={0.15}
+        variants={fadeUp}
+        src="/save-the-date.png"
+        alt="Save the date! March 3-6, 2027"
+        className="w-72 sm:w-[28rem]"
+      />
 
       <motion.img
         initial="hidden"
