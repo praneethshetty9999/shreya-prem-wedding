@@ -2,7 +2,13 @@ import { ABOUT_US_CHAPTERS } from '../../lib/aboutUsChapters'
 import { ChapterFrame } from '../ui/ChapterFrame'
 
 // Chapter title/text styling. Alignment is the caller's job (grid order classes).
-function ChapterCopy({ chapter }) {
+// `alignRight`: the body paragraph gets its own max-width, which shrinks its box
+// smaller than the (full-width) title/eyebrow above it — a max-width alone only
+// narrows a block box, it doesn't reposition it, so on the mirrored (right-aligned)
+// chapters that left the paragraph's own right edge short of the title's right
+// edge instead of sharing it. sm:ml-auto pushes the now-narrower box itself to the
+// right so its edge lines up with the title/eyebrow above.
+function ChapterCopy({ chapter, alignRight = false }) {
   return (
     <>
       {/* Figma: Source Code Pro SemiBold 12px/100%/0%, uppercase */}
@@ -10,11 +16,18 @@ function ChapterCopy({ chapter }) {
         {chapter.eyebrow}
       </p>
       {/* Figma: Source Code Pro SemiBold 26px/100%/0% */}
-      <h3 className="font-label mt-2 text-[26px] font-semibold leading-none tracking-normal text-[#083040]">
-        {chapter.title}
+      <h3 className="font-label mt-2 text-[26px] font-semibold leading-none tracking-normal text-[#083040] sm:whitespace-nowrap">
+        {chapter.title.split('\n').map((line, index, lines) => (
+          <span key={index}>
+            {line}
+            {index < lines.length - 1 && <br />}
+          </span>
+        ))}
       </h3>
       {/* Figma: Source Code Pro Medium 10.95px/14.37px/-7% */}
-      <p className="font-label mt-2 text-[10.95px] font-medium leading-[14.37px] tracking-[-0.07em] text-white">
+      <p
+        className={`font-label mt-2 text-[10.95px] font-medium leading-[14.37px] tracking-[-0.07em] text-white sm:max-w-[360px] ${alignRight ? 'sm:ml-auto' : ''}`}
+      >
         {chapter.text}
       </p>
     </>
@@ -51,20 +64,32 @@ export function AboutUsSection() {
           else. The fixed pixel bottom/right/w below sm: was eating more
           than half the width on a narrow phone, so it's smaller there —
           on tablet/desktop, sm: values are what's actually showing, so
-          edit those to move/resize it on a normal browser window. */}
-      <img
-        src="/Tilak.png"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-12 right-8 z-10 w-20 sm:bottom-24 sm:right-20 sm:w-36"
-      />
+          edit those to move/resize it on a normal browser window. Hover
+          for the tilak's significance — same tooltip copy/markup as the
+          Palace section's tilak mark. */}
+      <div
+        tabIndex={0}
+        className="group absolute bottom-12 right-8 z-10 w-20 cursor-help focus:outline-none sm:bottom-24 sm:right-20 sm:w-36"
+      >
+        <img
+          src="/Tilak.png"
+          alt="Rows of red tilak marks"
+          className="h-auto w-full transition-transform duration-300 ease-out group-hover:scale-105"
+        />
+        <div className="pointer-events-none absolute bottom-full right-0 mb-2 w-60 rounded-xl bg-maroon/95 px-4 py-2.5 text-left opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:w-72">
+          <p className="font-label text-[11px] leading-relaxed tracking-wide text-cream">
+            The tilak is a sacred mark of blessing in Indian culture — placed on the forehead to
+            honor and welcome guests, invoke protection, and mark auspicious beginnings.
+          </p>
+        </div>
+      </div>
 
       {/* pb-28 (not pb-4): on mobile the stacked chapters run taller than
           the aspect-ratio-reserved minimum height, so there's no natural
           buffer below the last one the way there is on desktop — without
           this, the Tilak corner accent below sits right on top of that
           text instead of in clear space. */}
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-28 pt-8 sm:pb-4 sm:pt-14">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-28 pt-4 sm:pb-4 sm:pt-8">
         <header>
           {/* w-fit: the wrapper's width is set by its widest child — the
               heading — so the flanking texts' flex row below shares the
@@ -76,29 +101,29 @@ export function AboutUsSection() {
                 together are wider than the heading (which sets this
                 wrapper's width), so the second block was overflowing
                 silently past the viewport edge on narrow phones. */}
-            <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-              <p className="font-label whitespace-nowrap text-center text-[11.5px] leading-snug text-white sm:text-left sm:text-sm">
-                Boston, 2023.
-                <br />
+            <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+              {/* Figma: Source Code Pro Medium 14.9px/100%/-7% */}
+              <p className="font-label whitespace-nowrap text-center text-[11.5px] font-medium leading-none tracking-[-0.07em] text-white sm:text-left sm:text-[14.9px]">
                 Two impossibly busy people,
                 <br />
                 a few miles apart, slowly finding
                 <br />
                 their way to each other.
               </p>
-              <p className="font-heading whitespace-nowrap text-center text-base font-bold leading-tight text-navy sm:text-right sm:text-[25px]">
-                SUMMER 2023
+              {/* Figma: DIN Medium 27.57px/111%/-7%, right-aligned */}
+              <p className="font-heading whitespace-nowrap text-center text-base font-medium leading-[1.11] tracking-[-0.07em] text-navy sm:text-right sm:text-[27.57px]">
+                AUTUMN 2023
                 <br />
                 BOSTON
               </p>
             </div>
 
-            {/* Figma: DIN Bold Alternate 83.89px/95.46px/-5% */}
-            <h2 className="font-heading mt-6 text-center text-[42px] font-bold leading-[1.1379] tracking-[-0.05em] text-navy sm:text-[64px] lg:text-[83.89px]">
-              A Love Story in
+            {/* Figma: Source Code Pro Bold 83.89px/95.46px/-7% */}
+            <h2 className="font-label mt-6 text-center text-[42px] font-bold leading-[1.1379] tracking-[-0.07em] text-navy sm:text-[64px] lg:text-[83.89px]">
+              A Love Story
               <br />
               <span className="relative inline-block">
-                Chapters
+                in Chapters
                 <img
                   src="/nimbu-mirchi-motif-cropped.png"
                   alt=""
@@ -116,7 +141,7 @@ export function AboutUsSection() {
             return (
               <li
                 key={chapter.id}
-                className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 sm:gap-10"
+                className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 sm:gap-10"
               >
                 {/* Reference mock (About Us Page.png) centers each frame on
                     its own title rather than sinking to the bottom of the
@@ -134,13 +159,13 @@ export function AboutUsSection() {
                     toward the frame without touching the grid gap, which
                     would shift the frame's own column width/position. */}
                 <div
-                  className={`text-center sm:self-end sm:text-left ${
+                  className={`min-w-0 text-center sm:self-end sm:text-left ${
                     frameFirst
-                      ? 'sm:order-2 sm:-ml-6'
-                      : 'sm:order-1 sm:-mr-6 sm:text-right'
+                      ? 'sm:order-2 sm:-ml-[90px]'
+                      : 'sm:order-1 sm:ml-auto sm:-mr-[90px] sm:text-right'
                   }`}
                 >
-                  <ChapterCopy chapter={chapter} />
+                  <ChapterCopy chapter={chapter} alignRight={!frameFirst} />
                 </div>
               </li>
             )
