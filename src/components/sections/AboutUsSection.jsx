@@ -5,12 +5,16 @@ import { ChapterFrame } from '../ui/ChapterFrame'
 function ChapterCopy({ chapter }) {
   return (
     <>
-      {/* Figma: DIN Medium 26px/100%/0%, #083040 — bumped up + bolder per feedback */}
-      <h3 className="font-heading w-[calc(100%+5px)] text-[30px] font-bold leading-none tracking-normal text-[#083040]">
+      {/* Figma: Source Code Pro SemiBold 12px/100%/0%, uppercase */}
+      <p className="font-label text-[12px] font-semibold uppercase leading-none tracking-normal text-[#083040]">
+        {chapter.eyebrow}
+      </p>
+      {/* Figma: Source Code Pro SemiBold 26px/100%/0% */}
+      <h3 className="font-label mt-2 text-[26px] font-semibold leading-none tracking-normal text-[#083040]">
         {chapter.title}
       </h3>
-      {/* Figma: Source Code Pro Medium 10.95px/14.37px/-7%, #FFFFFF — bumped up a bit per feedback */}
-      <p className="font-label mt-3 text-[13px] font-medium leading-[17px] tracking-[-0.07em] text-white">
+      {/* Figma: Source Code Pro Medium 10.95px/14.37px/-7% */}
+      <p className="font-label mt-2 text-[10.95px] font-medium leading-[14.37px] tracking-[-0.07em] text-white">
         {chapter.text}
       </p>
     </>
@@ -117,13 +121,25 @@ export function AboutUsSection() {
                 {/* Reference mock (About Us Page.png) centers each frame on
                     its own title rather than sinking to the bottom of the
                     paragraph — the sm:-mt pulls it up so it leads into the
-                    title from above instead of trailing the text. */}
+                    title from above instead of trailing the text. Frame
+                    stays pinned to sm:self-start (its position must not
+                    move) regardless of the row's height. */}
                 <div
-                  className={`mx-auto sm:-mt-14 ${frameFirst ? 'sm:order-1' : 'sm:order-2'}`}
+                  className={`mx-auto sm:self-start sm:-mt-14 ${frameFirst ? 'sm:order-1' : 'sm:order-2'}`}
                 >
                   <ChapterFrame photos={chapter.photos} />
                 </div>
-                <div className={`text-center sm:text-left ${frameFirst ? 'sm:order-2' : 'sm:order-1 sm:text-right'}`}>
+                {/* sm:self-end bottom-aligns the copy with the frame instead
+                    of the two sharing a top edge. The -ml/-mr pulls it
+                    toward the frame without touching the grid gap, which
+                    would shift the frame's own column width/position. */}
+                <div
+                  className={`text-center sm:self-end sm:text-left ${
+                    frameFirst
+                      ? 'sm:order-2 sm:-ml-6'
+                      : 'sm:order-1 sm:-mr-6 sm:text-right'
+                  }`}
+                >
                   <ChapterCopy chapter={chapter} />
                 </div>
               </li>

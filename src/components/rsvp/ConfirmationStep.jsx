@@ -22,10 +22,10 @@ export function ConfirmationStep({ onBack }) {
       style={{ backgroundImage: "url('/rsvp-background.png')" }}
     >
       <motion.div initial="hidden" animate="visible" custom={0.15} variants={fadeUp}>
-        <h1 className="font-heading text-2xl font-bold tracking-wide text-[#E0492B] sm:text-4xl">
-          SAVE THE DATE
+        <h1 className="font-heading text-3xl font-bold tracking-wide text-[#E0492B] sm:text-5xl">
+          SAVE THE DATE!
         </h1>
-        <p className="font-heading mt-2 text-3xl font-bold tracking-wide text-[#E0492B] sm:text-5xl">
+        <p className="font-heading mt-2 text-2xl font-bold tracking-wide text-[#E0492B] sm:text-4xl">
           {SAVE_THE_DATE_RANGE}
         </p>
       </motion.div>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useCountdown } from '../../hooks/useCountdown'
-import { COUPLE, SAVE_THE_DATE_RANGE, WEDDING_COUNTDOWN_TARGET } from '../../lib/constants'
+import { WEDDING_COUNTDOWN_TARGET } from '../../lib/constants'
 
 function pad(value) {
   return String(value).padStart(2, '0')
@@ -30,8 +30,8 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
   return (
     <section
       id="hero-section"
-      className="relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-terracotta bg-cover bg-center px-6 py-8 text-cream sm:gap-8 sm:py-10"
-      style={{ backgroundImage: "url('/rust-background.png')" }}
+      className="relative flex min-h-svh flex-col items-center justify-between overflow-hidden bg-terracotta bg-cover bg-center bg-no-repeat px-6 py-10 text-cream sm:py-14"
+      style={{ backgroundImage: "url('/Hero.svg')" }}
     >
       <motion.button
         type="button"
@@ -41,105 +41,36 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         animate="visible"
         custom={0}
         variants={fadeUp}
-        className="cursor-pointer text-center"
+        className="cursor-pointer"
       >
-        {/* Figma: DIN Condensed Bold 39.53px / 100% line-height / 1% letter-spacing */}
-        <h1 className="font-hero-condensed text-xl font-bold leading-none tracking-[0.01em] text-heading sm:text-3xl lg:text-[36.52px]">
-          SAVE THE DATE
-        </h1>
-        {/* Figma: DIN Bold 32px / 100% / 0% */}
-        <p className="font-hero-condensed mt-2 text-base font-bold leading-none text-heading sm:text-xl lg:text-[36.52px]">
-          {SAVE_THE_DATE_RANGE}
-        </p>
+        <img
+          src="/Group.svg"
+          alt="Save the date, March 3-6 2027"
+          className="h-auto w-[190px] sm:w-[220px] lg:w-[251px]"
+        />
       </motion.button>
 
-      {/* Mobile: logo alone, centered */}
       <motion.div
         initial="hidden"
         animate="visible"
         custom={0.15}
         variants={fadeUp}
-        className="relative flex h-[288px] w-[288px] items-center justify-center rounded-full shadow-lg sm:hidden"
+        className="flex h-[260px] w-[260px] items-center justify-center sm:h-[330px] sm:w-[330px] lg:h-[395px] lg:w-[395px]"
       >
-        <img src="/Logo.png" alt="" className="h-full w-full" />
-      </motion.div>
-
-      {/* Desktop: click date / to RSVP pinned to the logo's top edge, SHREYA / PREM pinned to its bottom edge */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        custom={0.15}
-        variants={fadeUp}
-        className="relative mx-auto hidden h-[383px] w-full max-w-5xl sm:block lg:h-[430px]"
-      >
-        {/* Vertically centered on the full "SAVE THE DATE" + "March 3rd'27"
-            block above (measured midpoint of that two-line button, not just
-            guessed) rather than sitting at the circle's own top edge. */}
-        {/* Figma: Source Code Pro Medium 24.06px / 100% / 0% */}
-        <span className="font-label absolute left-0 top-[-71px] text-xl font-medium leading-none text-label lg:top-[-84px] lg:text-[24.06px]">
-          click date
-        </span>
-        <span className="font-label absolute right-0 top-[-71px] text-right text-xl font-medium leading-none text-label lg:top-[-84px] lg:text-[24.06px]">
-          to RSVP
-        </span>
-
-        <div className="absolute left-1/2 top-0 h-full w-[383px] -translate-x-1/2 rounded-full shadow-lg lg:w-[430px]">
-          <img src="/Logo.png" alt="" className="h-full w-full" />
-        </div>
-
-        {/* top-1/2 -translate-y-1/2: centered on the logo's own vertical
-            center line, not just offset up from the bottom. */}
-        {/* Figma: DIN Condensed Bold 55.04px / 100% / 0% */}
-        <h2 className="font-hero-condensed absolute left-0 top-1/2 -translate-x-4 -translate-y-1/2 text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
-          {COUPLE.partnerOne}
-        </h2>
-        <h2 className="font-hero-condensed absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 text-right text-3xl font-bold leading-none uppercase text-[#F4EEDB] lg:text-[55.04px]">
-          {COUPLE.partnerTwo}
-        </h2>
-      </motion.div>
-
-      {/* Mobile: Shreya & Prem as one combined line */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        custom={0.3}
-        variants={fadeUp}
-        className="flex items-center justify-center gap-3 sm:hidden"
-      >
-        <h2 className="font-hero-condensed text-3xl font-bold uppercase text-[#F4EEDB]">
-          {COUPLE.partnerOne}
-        </h2>
-        <span aria-hidden="true" className="font-heading text-2xl font-bold text-[#F4EEDB]">
-          &amp;
-        </span>
-        <h2 className="font-hero-condensed text-3xl font-bold uppercase text-[#F4EEDB]">
-          {COUPLE.partnerTwo}
-        </h2>
+        <img src="/Logo.svg" alt="" className="h-full w-full" />
       </motion.div>
 
       <motion.p
         initial="hidden"
         animate="visible"
-        custom={0.45}
+        custom={0.3}
         variants={fadeUp}
-        className="font-timer text-base tracking-widest text-cream/80 sm:text-lg lg:text-xl"
+        className="font-timer text-base font-bold tracking-widest text-cream/80 sm:text-lg lg:text-xl"
         aria-label={`${days} days ${hours} hours ${minutes} minutes ${seconds} seconds remaining`}
       >
         <CountdownUnit value={days} label="D" /> <CountdownUnit value={hours} label="H" />{' '}
         <CountdownUnit value={minutes} label="M" /> <CountdownUnit value={seconds} label="S" />
       </motion.p>
-
-      <motion.button
-        type="button"
-        onClick={onOpenRsvp}
-        initial="hidden"
-        animate="visible"
-        custom={0.6}
-        variants={fadeUp}
-        className="font-label text-xl font-medium leading-none text-label sm:hidden"
-      >
-        click date to RSVP
-      </motion.button>
     </section>
   )
 }

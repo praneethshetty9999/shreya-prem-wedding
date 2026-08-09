@@ -17,16 +17,17 @@
   --font-heading-alternate: 'DIN Alternate', 'DINAlternate', 'Oswald', sans-serif;
   --font-label: 'Source Code Pro', ui-monospace, Consolas, monospace;
   --font-timer: 'Argentum Sans', 'Helvetica Neue', Arial, sans-serif;
-  /* Hero-only: the flattened text in Section 1.svg (SAVE THE DATE / date /
-     SHREYA / PREM) has the truncated-apex "A" and tight aperture that's
-     characteristic of the real DIN Condensed used in that Figma export —
-     Bebas Neue is the closest free match (verified against the SVG glyph
-     shapes directly), noticeably closer than Oswald's rounder, pointed-apex
-     forms. Kept separate from font-heading-condensed rather than swapped in
-     there globally: Bebas Neue is unicase (no real lowercase), which would
-     wrongly force the RSVP page's mixed-case "Please RSVP by" into all-caps
-     letterforms if applied site-wide. */
-  --font-hero-condensed: 'Bebas Neue', 'Oswald', sans-serif;
+  /* Hero-only: the flattened text in Section 1.png (SAVE THE DATE / date /
+     SHREYA / PREM) has the truncated-apex "A" and thin, tall condensed
+     strokes of the real DIN Condensed used in that export. Tried Bebas Neue
+     first (same basic letterforms) but its stroke weight renders visibly
+     heavier/blockier than the reference at matched cap-height; League
+     Gothic's thinner strokes are a much closer match (verified by
+     rendering both next to a scaled crop of the reference PNG). Kept
+     separate from font-heading-condensed rather than swapped in there
+     globally, since it's only confirmed against this hero crop, not the
+     rest of the site's condensed-font usage. */
+  --font-hero-condensed: 'League Gothic', 'Oswald', sans-serif;
 
   --color-terracotta: #be4e2c;
   --color-terracotta-dark: #a3421f;

@@ -52,23 +52,12 @@ export function StorySection({ onOpenOurStory = () => {} }) {
         </button>
       </motion.div>
 
-      {/* Figma: DIN Bold 16px / 0% letter-spacing, line-height bumped to 115%
-          per feedback, color #B70000, one-line paragraph gaps, two-line sign-off. */}
-      <div className="font-heading-alternate order-2 text-center text-base font-bold leading-[1.5] text-[#B70000] md:text-left">
-        <p>
-          Welcome! We are so happy you're here. As you've probably heard by now, we are getting married!
-        </p>
-        <p className="mt-6">
-          As we look ahead to this milestone, we find ourselves thinking about the people who have made us who we are. Whether you've known us for years or are just getting to know us, your presence in our lives means more than we can express. We would be honored to have you with us as we celebrate this occasion, surrounded by the people we love most.
-        </p>
-        <p className="mt-6">
-          Thank you for being part of our story. We can't wait to celebrate with you!
-        </p>
-        <p className="mt-6">
-          With so much love,
-          <br />
-          Prem &amp; Shreya
-        </p>
+      <div className="order-2 flex justify-center md:justify-start">
+        <img
+          src="/couple-text.svg"
+          alt="Welcome! We are so happy you're here. As you've probably heard by now, we are getting married! As we look ahead to this milestone, we find ourselves thinking about the people who have made us who we are. Whether you've known us for years or are just getting to know us, your presence in our lives means more than we can express. We would be honored to have you with us as we celebrate this occasion, surrounded by the people we love most. Thank you for being part of our story. We can't wait to celebrate with you! With so much love, Prem & Shreya"
+          className="h-auto w-full"
+        />
       </div>
 
       <div className="order-3 flex items-center justify-center md:-ml-4 md:justify-start">
