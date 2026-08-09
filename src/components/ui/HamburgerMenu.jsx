@@ -2,16 +2,21 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { ArrowRightIcon } from '../rsvp/icons'
 
-// FAQ Section has no page yet — the link sits in the menu but is inert until
-// a real FAQ page exists.
 const NAV_ITEMS = [
   { label: 'Homepage', action: 'homepage' },
   { label: 'Our Story', action: 'ourStory' },
-  { label: 'View Itinerary', action: 'itinerary' },
-  { label: 'FAQ Section', action: null },
+  { label: 'FAQ', action: 'faq' },
+  { label: 'Travel', action: 'travel' },
 ]
 
-export function HamburgerMenu({ onGoHome, onOpenOurStory, onOpenItinerary, onOpenRsvp }) {
+export function HamburgerMenu({
+  onGoHome,
+  onOpenOurStory,
+  onOpenTravel,
+  onOpenFAQ,
+  onOpenRsvp,
+  iconColorClassName = 'bg-cream',
+}) {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -32,7 +37,8 @@ export function HamburgerMenu({ onGoHome, onOpenOurStory, onOpenItinerary, onOpe
     setIsOpen(false)
     if (action === 'homepage') onGoHome()
     else if (action === 'ourStory') onOpenOurStory()
-    else if (action === 'itinerary') onOpenItinerary()
+    else if (action === 'travel') onOpenTravel()
+    else if (action === 'faq') onOpenFAQ()
   }
 
   function handleRsvpClick() {
@@ -52,9 +58,9 @@ export function HamburgerMenu({ onGoHome, onOpenOurStory, onOpenItinerary, onOpe
           aria-label="Open menu"
           className="fixed left-5 top-5 z-[80] flex h-9 w-9 flex-col items-center justify-center gap-1.5 p-2"
         >
-          <span className="h-0.5 w-7 rounded-full bg-cream" />
-          <span className="h-0.5 w-7 rounded-full bg-cream" />
-          <span className="h-0.5 w-7 rounded-full bg-cream" />
+          <span className={`h-0.5 w-7 rounded-full ${iconColorClassName}`} />
+          <span className={`h-0.5 w-7 rounded-full ${iconColorClassName}`} />
+          <span className={`h-0.5 w-7 rounded-full ${iconColorClassName}`} />
         </button>
       )}
 
@@ -89,7 +95,7 @@ export function HamburgerMenu({ onGoHome, onOpenOurStory, onOpenItinerary, onOpe
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="font-label text-sm text-vermillion underline underline-offset-2"
+                  className="font-label text-sm text-[#BE452A] underline underline-offset-2"
                 >
                   ✕ Close
                 </button>
@@ -103,9 +109,8 @@ export function HamburgerMenu({ onGoHome, onOpenOurStory, onOpenItinerary, onOpe
                     disabled={!item.action}
                     onClick={() => handleNavAction(item.action)}
                     /* Figma: Source Code Pro Medium 18px/100%/0%, #BE452A */
-                    className={`font-label text-left text-[18px] font-medium leading-none tracking-normal transition-colors ${
-                      item.action ? 'text-[#BE452A] hover:opacity-80' : 'cursor-default text-[#BE452A]/40'
-                    }`}
+                    className={`font-label text-left text-[18px] font-medium leading-none tracking-normal transition-colors ${item.action ? 'text-[#BE452A] hover:opacity-80' : 'cursor-default text-[#BE452A]/40'
+                      }`}
                   >
                     {item.label}
                   </button>

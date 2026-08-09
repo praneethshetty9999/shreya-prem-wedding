@@ -8,10 +8,12 @@ import { LandingPage } from './components/sections/LandingPage'
 import { PalaceSection } from './components/sections/PalaceSection'
 import { StorySection } from './components/sections/StorySection'
 import { VideoSection } from './components/sections/VideoSection'
+import { FAQOverlay } from './components/ui/FAQOverlay'
 import { HamburgerMenu } from './components/ui/HamburgerMenu'
 import { ItineraryBadge } from './components/ui/ItineraryBadge'
 import { ItineraryModal } from './components/ui/ItineraryModal'
 import { OurStoryOverlay } from './components/ui/OurStoryOverlay'
+import { TravelOverlay } from './components/ui/TravelOverlay'
 
 // gate.html appends this after a successful password submit so the user
 // lands straight on the hero section instead of the postcard they just came
@@ -50,6 +52,8 @@ function App() {
   // history entry of their own.
   const isRsvpOpen = location.pathname === '/rsvp'
   const isOurStoryOpen = location.pathname === '/our-story'
+  const isFaqOpen = location.pathname === '/faq'
+  const isTravelOpen = location.pathname === '/travel'
 
   // "Homepage" needs to back out of whatever's open (RSVP, Our Story,
   // itinerary popup) — not just scroll — since any of those can be the
@@ -76,6 +80,14 @@ function App() {
     if (location.pathname !== '/') navigate('/')
     setIsItineraryOpen(true)
   }
+  function openFAQ() {
+    setIsItineraryOpen(false)
+    navigate('/faq')
+  }
+  function openTravel() {
+    setIsItineraryOpen(false)
+    navigate('/travel')
+  }
 
   return (
     <>
@@ -89,8 +101,10 @@ function App() {
           <HamburgerMenu
             onGoHome={goHome}
             onOpenOurStory={openOurStory}
-            onOpenItinerary={openItinerary}
+            onOpenTravel={openTravel}
+            onOpenFAQ={openFAQ}
             onOpenRsvp={openRsvp}
+            iconColorClassName={isFaqOpen || isTravelOpen ? 'bg-[#F43511]' : 'bg-cream'}
           />
           {!isRsvpOpen && <ItineraryBadge onClick={openItinerary} />}
         </>
@@ -137,6 +151,8 @@ function App() {
 
       <AnimatePresence>
         {isOurStoryOpen && <OurStoryOverlay onClose={() => navigate('/')} />}
+        {isFaqOpen && <FAQOverlay onClose={() => navigate('/')} />}
+        {isTravelOpen && <TravelOverlay onClose={() => navigate('/')} />}
         {isItineraryOpen && <ItineraryModal onClose={() => setIsItineraryOpen(false)} />}
       </AnimatePresence>
     </>

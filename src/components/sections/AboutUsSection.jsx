@@ -43,7 +43,24 @@ export function AboutUsSection() {
         <img src="/About.webp" alt="" className="block w-full" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-4 pt-8 sm:pt-14">
+      {/* Two sizes, not three: base = phones (<640px), sm: = everything
+          else. The fixed pixel bottom/right/w below sm: was eating more
+          than half the width on a narrow phone, so it's smaller there —
+          on tablet/desktop, sm: values are what's actually showing, so
+          edit those to move/resize it on a normal browser window. */}
+      <img
+        src="/Tilak.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-12 right-8 z-10 w-20 sm:bottom-24 sm:right-20 sm:w-36"
+      />
+
+      {/* pb-28 (not pb-4): on mobile the stacked chapters run taller than
+          the aspect-ratio-reserved minimum height, so there's no natural
+          buffer below the last one the way there is on desktop — without
+          this, the Tilak corner accent below sits right on top of that
+          text instead of in clear space. */}
+      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-28 pt-8 sm:pb-4 sm:pt-14">
         <header>
           {/* w-fit: the wrapper's width is set by its widest child — the
               heading — so the flanking texts' flex row below shares the

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useCountdown } from '../../hooks/useCountdown'
 import { COUPLE, SAVE_THE_DATE_RANGE, WEDDING_COUNTDOWN_TARGET } from '../../lib/constants'
-import { PetalShower } from '../ui/PetalShower'
 
 function pad(value) {
   return String(value).padStart(2, '0')
@@ -33,8 +32,6 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
       className="relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-terracotta bg-cover bg-center px-6 py-8 text-cream sm:gap-8 sm:py-10"
       style={{ backgroundImage: "url('/rust-background.png')" }}
     >
-      <PetalShower />
-
       <motion.button
         type="button"
         onClick={onOpenRsvp}

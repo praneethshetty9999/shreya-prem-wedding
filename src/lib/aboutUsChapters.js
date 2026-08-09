@@ -69,7 +69,7 @@ export const ABOUT_US_CHAPTERS = [
   {
     id: 'going-everywhere',
     title: 'Going Everywhere, Especially Nowhere',
-    text: 'Ask Prem and Shreya where they want to go and the answer is probably somewhere far, somewhere strange, somewhere most people may not have heard of. Together they\'ve scouted remote cabins and urban enclaves with equal devotion — across India, England, Sweden, Greece, Norway, Italy, Switzerland, Costa Rica, and different corners of the U.S. Shreya has an uncanny gift for finding the most amazing places to stay; pet-sits, architect\'s houses, farm-stays, hidden gems, and Prem is always enthusiastically along for it, beautifully capturing their adventures with his camera(s).',
+    text: 'Ask Prem and Shreya where they want to go and the answer is probably somewhere far, somewhere strange, somewhere most people may not have heard of. Together they\'ve scouted remote cabins and urban enclaves with equal devotion — across India, England, Sweden, Greece, Norway, Italy, Switzerland, Costa Rica, and different corners of the U.S. Shreya has an uncanny gift for finding the most amazing places to stay; pet-sits, architect\'s houses, farm-stays, hidden gems, and Prem is always enthusiastically along for it.',
     photos: [
       'about-us/going-everywhere/party-xmas (2).JPG',
       'about-us/going-everywhere/Photo09_16.jpg',

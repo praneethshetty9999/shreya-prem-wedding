@@ -15,7 +15,7 @@ export function PalaceSection() {
         src="/logo2.png"
         alt=""
         aria-hidden="true"
-        className="absolute right-[10%] top-0 z-0 w-[65%] md:right-[9%] md:top-[0.5%] md:w-[42%]"
+        className="absolute right-[12%] top-[6%] z-0 w-[65%] md:right-[11%] md:top-[6%] md:w-[42%]"
       />
       <img
         src="/Palace.png"
@@ -59,7 +59,7 @@ export function PalaceSection() {
       {/* Tilak marks over the fort — hover for their significance. */}
       <div
         tabIndex={0}
-        className="group absolute bottom-[8%] right-[8%] z-40 w-[24%] cursor-help focus:outline-none md:bottom-[7%] md:right-[11%] md:w-[18%]"
+        className="group absolute bottom-[10%] right-[8%] z-40 w-[24%] cursor-help focus:outline-none md:bottom-[9%] md:right-[11%] md:w-[18%]"
       >
         <img
           src="/Tilak.png"
@@ -74,7 +74,7 @@ export function PalaceSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-[21%] left-0 z-30 aspect-[40/3] w-full overflow-hidden md:bottom-[24%]">
+      <div className="absolute bottom-[23%] left-0 z-30 aspect-[40/3] w-full overflow-hidden md:bottom-[26%]">
         <img
           src="/Palace-boundary.png"
           alt=""
