@@ -127,7 +127,10 @@ export function HamburgerMenu({
                   <ArrowRightIcon className="h-4 w-4" />
                 </button>
                 <p className="font-label text-xs text-vermillion/80">
-                  Still have questions? <span className="underline">Email us</span>
+                  Still have questions?{' '}
+                  <a href="mailto:soodmenon@gmail.com" className="underline">
+                    Email us
+                  </a>
                 </p>
               </div>
             </motion.div>
