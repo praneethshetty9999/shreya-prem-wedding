@@ -31,17 +31,20 @@ export function LandingPage({ onEnter }) {
       <div className="flex w-full justify-center px-6 md:w-1/2 md:translate-x-full md:px-12 lg:px-20">
         <div className="w-full max-w-xl">
           <div className="font-label text-base text-[#7c3b24] sm:text-lg lg:text-xl">
-            <p className="text-right">With hearts full of love,</p>
-            <div className="h-2 overflow-hidden">
-              <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+            {/* w-fit + ml-auto: the divider img below is w-full of *this*
+                wrapper, not the whole column, so it shrinks to match the
+                line's own text width instead of spanning the full width. */}
+            <div className="ml-auto w-fit">
+              <p className="text-right">This has been in the works for a while...</p>
+              <div className="h-2 overflow-hidden">
+                <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+              </div>
             </div>
-            <p className="pt-1 text-right">we invite you to join us as we begin</p>
-            <div className="h-2 overflow-hidden">
-              <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
-            </div>
-            <p className="pt-1 text-right tracking-widest">OUR FOREVER.</p>
-            <div className="h-2 overflow-hidden">
-              <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+            <div className="ml-auto mt-1 w-fit">
+              <p className="text-right">Figured we’d make it official.</p>
+              <div className="h-2 overflow-hidden">
+                <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+              </div>
             </div>
           </div>
 

@@ -108,6 +108,17 @@
           font-size: 1.25rem;
         }
       }
+      /* w-fit + margin-left: auto — the divider img below is width: 100% of
+         *this* wrapper, not the whole column, so it shrinks to match the
+         line's own text width instead of spanning the full width (same
+         technique as LandingPage.jsx). */
+      .lines .line {
+        width: fit-content;
+        margin-left: auto;
+      }
+      .lines .line + .line {
+        margin-top: 0.25rem;
+      }
       .lines p {
         margin: 0;
         text-align: right;
@@ -224,12 +235,14 @@
     <div class="right-half">
       <div class="right-half-inner">
         <div class="lines">
-          <p>With hearts full of love,</p>
-          <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
-          <p>we invite you to join us as we begin</p>
-          <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
-          <p class="last">OUR FOREVER.</p>
-          <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
+          <div class="line">
+            <p>This has been in the works for a while...</p>
+            <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
+          </div>
+          <div class="line">
+            <p>Figured we’d make it official.</p>
+            <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
+          </div>
         </div>
 
         <div class="action-row">
