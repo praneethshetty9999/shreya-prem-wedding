@@ -53,13 +53,16 @@
         }
       }
 
+      /* Postcard center divider — same asset and positioning as the React
+         postcard's vertical.png (LandingPage.jsx). */
       .divider {
         display: none;
         position: absolute;
         left: 50%;
         top: 19%;
         height: 62%;
-        border-left: 1px dashed rgba(185, 141, 79, 0.7);
+        width: auto;
+        transform: translateX(-50%);
       }
       @media (min-width: 768px) {
         .divider {
@@ -108,14 +111,20 @@
       .lines p {
         margin: 0;
         text-align: right;
-        border-bottom: 1px dashed #b98d4f;
-        padding-bottom: 0.5rem;
-      }
-      .lines p + p {
-        padding-top: 0.75rem;
       }
       .lines .last {
         letter-spacing: 0.1em;
+      }
+      /* Same horizontal.png divider as the React postcard, under each line
+         of text (LandingPage.jsx). */
+      .lines .line-divider {
+        height: 0.5rem;
+        overflow: hidden;
+      }
+      .lines .line-divider img {
+        display: block;
+        width: 100%;
+        margin-top: -0.75rem;
       }
 
       .action-row {
@@ -210,14 +219,17 @@
   </head>
   <body>
     <div class="stamp" aria-hidden="true"></div>
-    <div class="divider" aria-hidden="true"></div>
+    <img class="divider" src="/vertical.png" alt="" aria-hidden="true" />
 
     <div class="right-half">
       <div class="right-half-inner">
         <div class="lines">
           <p>With hearts full of love,</p>
+          <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
           <p>we invite you to join us as we begin</p>
+          <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
           <p class="last">OUR FOREVER.</p>
+          <div class="line-divider" aria-hidden="true"><img src="/horizontal.png" alt="" /></div>
         </div>
 
         <div class="action-row">

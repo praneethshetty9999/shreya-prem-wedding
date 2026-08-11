@@ -34,22 +34,23 @@ function ChapterCopy({ chapter, alignRight = false }) {
   )
 }
 
-// `About.webp` is the full sky-to-palace backdrop — the only background
+// "Our Story.png" is the full sky-to-palace backdrop — the only background
 // for this page now, shown here at its true, undistorted size (no
 // stretching to match whatever height the chapter list happens to need,
 // and nothing else layered below it). Instead the chapters flow as normal
 // content *on top of* it (position: absolute behind them), so chapters can
 // land on the sky, the palace, or both, however the content naturally
-// falls at a given screen size. The wrapper's `aspect-[1920/7327]` (the
-// image's native size) reserves at least that much height so the complete
-// palace always shows — never cropped short the way plain content-driven
-// height would if the chapters happened to end a bit early. If content is
-// taller than that (long copy, narrow viewport), the wrapper still grows
-// to fit it as normal, and `bg-[#7e93a0]` (matching the overlay's own
-// backdrop) covers the gap below where the image runs out.
+// falls at a given screen size. The wrapper's `aspect-[1920/7678]` (the
+// image's native size, already cropped 1850px off the top to trim excess
+// sky) reserves at least that much height so the complete palace always
+// shows — never cropped short the way plain content-driven height would
+// if the chapters happened to end a bit early. If content is taller than
+// that (long copy, narrow viewport), the wrapper still grows to fit it as
+// normal, and `bg-[#7e93a0]` (matching the overlay's own backdrop) covers
+// the gap below where the image runs out.
 export function AboutUsSection() {
   return (
-    <div className="relative aspect-[1920/7327] bg-[#7e93a0]">
+    <div className="relative aspect-[1920/7678] bg-[#7e93a0]">
       {/* No negative z-index here — an absolutely-positioned child with a
           negative z-index escapes this div's own stacking context (it
           isn't one without its own z-index) and can end up behind some
@@ -57,7 +58,7 @@ export function AboutUsSection() {
           sibling below. Keeping both this and the content div at
           non-negative z-index, with the content on top, avoids that. */}
       <div aria-hidden="true" className="absolute inset-x-0 top-0 z-0">
-        <img src="/About.webp" alt="" className="block w-full" />
+        <img src="/Our Story.png" alt="" className="block w-full" />
       </div>
 
       {/* Two sizes, not three: base = phones (<640px), sm: = everything
@@ -69,7 +70,7 @@ export function AboutUsSection() {
           Palace section's tilak mark. */}
       <div
         tabIndex={0}
-        className="group absolute bottom-12 right-8 z-10 w-20 cursor-help focus:outline-none sm:bottom-24 sm:right-20 sm:w-36"
+        className="group absolute bottom-12 right-8 z-10 w-28 cursor-help focus:outline-none sm:bottom-24 sm:right-20 sm:w-48"
       >
         <img
           src="/Tilak.png"
@@ -89,7 +90,7 @@ export function AboutUsSection() {
           buffer below the last one the way there is on desktop — without
           this, the Tilak corner accent below sits right on top of that
           text instead of in clear space. */}
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-28 pt-4 sm:pb-4 sm:pt-8">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-28 pt-10 sm:pb-4 sm:pt-16">
         <header>
           {/* w-fit: the wrapper's width is set by its widest child — the
               heading — so the flanking texts' flex row below shares the
@@ -141,7 +142,9 @@ export function AboutUsSection() {
             return (
               <li
                 key={chapter.id}
-                className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 sm:gap-10"
+                className={`grid grid-cols-1 items-start gap-3 sm:grid-cols-2 sm:gap-10 ${
+                  frameFirst ? '' : 'sm:translate-x-[13px]'
+                }`}
               >
                 {/* Reference mock (About Us Page.png) centers each frame on
                     its own title rather than sinking to the bottom of the

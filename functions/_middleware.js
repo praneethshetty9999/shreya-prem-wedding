@@ -47,7 +47,7 @@ export async function onRequest(context) {
 
   // Cloudflare Pages' default "clean URLs" 308-redirects /gate.html -> /gate,
   // so both forms have to be exempt or that redirect loops back through here.
-  // The two images are the gate page's own postcard art — decorative only,
+  // These images are the gate page's own postcard art — decorative only,
   // no guest/private content — exempted so the login page can render itself.
   const PUBLIC_PATHS = new Set([
     '/gate',
@@ -55,6 +55,8 @@ export async function onRequest(context) {
     '/api/auth',
     '/rsvp-background.png',
     '/landing-page.png',
+    '/horizontal.png',
+    '/vertical.png',
   ])
   if (PUBLIC_PATHS.has(url.pathname)) {
     return next()
