@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { CountryCodeSelect } from './CountryCodeSelect'
-import { ArrowRightIcon } from './icons'
 
 const fieldClass =
   'font-label w-full rounded-xl border border-vermillion bg-transparent px-4 py-3.5 text-sm text-terracotta placeholder:text-terracotta/50 focus:outline-none'
@@ -182,9 +181,6 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
           {isSubmitting && submittingIntent === 'attending'
             ? 'Submitting...'
             : 'See you there!'}
-          {!(isSubmitting && submittingIntent === 'attending') && (
-            <ArrowRightIcon className="h-5 w-5 shrink-0" />
-          )}
         </button>
       </div>
     </form>
