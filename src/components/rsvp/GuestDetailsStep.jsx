@@ -34,6 +34,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
   const [country, setCountry] = useState('')
   const [zipCode, setZipCode] = useState('')
   const [dietary, setDietary] = useState('')
+  const [submittingIntent, setSubmittingIntent] = useState(null)
 
   const isPhoneValid = primaryPhone.length >= 7 && primaryPhone.length <= 12
   const isComplete =
@@ -61,10 +62,12 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
   function handleSubmit(event) {
     event.preventDefault()
     if (!isComplete) return
+    setSubmittingIntent('attending')
     onSubmit(getPayload(true))
   }
 
   function handleNotComing() {
+    setSubmittingIntent('not-attending')
     onSubmit(getPayload(false))
   }
 
@@ -166,7 +169,9 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
           disabled={isSubmitting}
           className="font-label flex flex-1 items-center justify-center rounded-full border border-vermillion px-3 py-3.5 text-base text-vermillion transition-opacity disabled:opacity-40 sm:text-lg whitespace-nowrap"
         >
-          {isSubmitting ? "Submitting..." : "Won’t be there :("}
+          {isSubmitting && submittingIntent === 'not-attending'
+            ? 'Submitting...'
+            : "Won't be there :("}
         </button>
 
         <button
@@ -174,8 +179,12 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
           disabled={!isComplete || isSubmitting}
           className="font-label flex flex-1 items-center justify-center gap-2 rounded-full bg-vermillion px-3 py-3.5 text-base text-rsvp-cream transition-opacity disabled:opacity-40 sm:gap-3 sm:text-lg whitespace-nowrap"
         >
-          {isSubmitting ? 'Submitting…' : 'See you there!'}
-          {!isSubmitting && <ArrowRightIcon className="h-5 w-5 shrink-0" />}
+          {isSubmitting && submittingIntent === 'attending'
+            ? 'Submitting...'
+            : 'See you there!'}
+          {!(isSubmitting && submittingIntent === 'attending') && (
+            <ArrowRightIcon className="h-5 w-5 shrink-0" />
+          )}
         </button>
       </div>
     </form>
