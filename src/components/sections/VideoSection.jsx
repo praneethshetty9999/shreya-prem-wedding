@@ -1,7 +1,7 @@
 export function VideoSection() {
   return (
     <section
-      className="relative z-20 -mt-[30%] bg-mustard pt-16 pb-32 sm:pt-20 sm:pb-36 md:-mt-[22%] md:pt-20 md:pb-44"
+      className="relative z-20 -mt-[30.7%] bg-mustard pt-16 pb-32 sm:pt-20 sm:pb-36 md:-mt-[22%] md:pt-20 md:pb-44"
     >
       <div className="flex w-full items-center justify-center gap-6 px-6 md:gap-20">
         <img

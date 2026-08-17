@@ -20,7 +20,7 @@ export function PalaceSection() {
       <img
         src="/Palace.png"
         alt="Alila Fort Bishangarh"
-        className="absolute bottom-0 left-1/2 z-10 h-[85%] w-auto -translate-x-1/2 md:-left-[8%] md:h-full md:translate-x-0"
+        className="absolute bottom-0 left-1/2 z-10 h-[85%] w-auto -translate-x-1/2 translate-y-[9%] md:-left-[8%] md:h-full md:translate-x-0 md:translate-y-0"
       />
 
       {/* Hand-print marks on the fort wall — click for directions to the venue. */}
