@@ -34,9 +34,11 @@ function ChapterCopy({ chapter, alignRight = false }) {
   )
 }
 
-// "Our Story.png" (the full sky-to-palace artwork) is split into four
-// assets, used differently per breakpoint because mobile and desktop need
-// genuinely different strategies here — not just different sizes:
+// "Our Story.png" (the full sky-to-palace artwork, originally one
+// 1920x7678 image in main) is split into four assets here so mobile can
+// use a cheaper strategy than desktop — but the two breakpoints need to
+// reproduce the *same* underlying composite, or content ends up sized/
+// positioned against a differently-scaled background than main's:
 //
 // Below sm: (single-column, stacked chapters can run to ~7600px tall,
 // well past the source's own ~5300px of usable sky) —
@@ -51,25 +53,32 @@ function ChapterCopy({ chapter, alignRight = false }) {
 //    pixels instead of stretching them, so it never has to upscale past
 //    native resolution — which was the earlier version's actual source of
 //    blur/noise on mobile.
+//  - our-story-palace.webp appended after as a normal block image, full
+//    native size, right after the last chapter.
 //
-// sm: and up (2-column chapters keep total content height under ~4750px,
-// comfortably less than the source's ~5300px of sky) — a plain
-// object-cover on the *whole* sky region (our-story-sky.webp, y0–5300) is
-// enough on its own: never upscaled, never tiled. Tiling was tried
-// everywhere at first, but at desktop's much larger render scale the
-// same swatch's fine brush-stroke texture visibly "resets" at each
-// 800px repeat even though the color matches — invisible once shrunk
-// ~5x for mobile, but visible at desktop's near-native scale. So desktop
-// gets the one continuous image instead, which was never short on
-// pixels to begin with.
+// sm: and up — reproduces main's exact technique instead: the wrapper
+// gets `sm:aspect-[1920/7678]`, the *same* ratio as the original single
+// image, so it reserves precisely the height main reserved (growing
+// taller only if content ever needs more — same aspect-ratio trick main
+// used). our-story-sky.webp (source y0–5300) sits at its own true,
+// unstretched size at the top; our-story-palace.webp (source y2678,
+// representing y5000–7678) is absolutely positioned at `top: 5000/7678`
+// so it resumes exactly where the two source crops were split, 300px of
+// deliberate overlap and all. Together they render as the identical
+// continuous image main showed at the identical scale — which matters
+// because content is normal-flow on top of it: get the reserved height
+// or the scale wrong (the earlier version force-cropped the sky to fit
+// the content's own height instead) and every chapter ends up sitting
+// against a different part of the artwork than in main, even though the
+// chapters' own layout classes never changed.
 //
-// Both breakpoints end in the same our-story-palace.webp footer (see
-// below) — its own top rows (y5000) were color-matched against both the
-// tile and the plain sky crop for a seamless handoff either way.
+// Both breakpoints' palace crops share the same top rows (source y5000) —
+// color-matched against both the tile and the plain sky edge so the
+// handoff reads as one continuous painting either way.
 export function AboutUsSection() {
   return (
     <div className="relative">
-      <div className="relative bg-[#7e93a0]">
+      <div className="relative bg-[#7e93a0] sm:aspect-[1920/7678]">
         {/* No negative z-index here — an absolutely-positioned child with a
             negative z-index escapes this div's own stacking context (it
             isn't one without its own z-index) and can end up behind some
@@ -91,7 +100,18 @@ export function AboutUsSection() {
           src="/our-story-sky.webp"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 hidden h-full w-full object-cover sm:block"
+          className="absolute inset-x-0 top-0 z-0 hidden w-full sm:block"
+        />
+        {/* top: 5000/7678 — resumes the source image exactly where the sky
+            crop (y0–5300) and palace crop (representing y5000–7678) were
+            split, so the 300px overlap lines the two up seamlessly at
+            main's own scale. */}
+        <img
+          src="/our-story-palace.webp"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-x-0 z-0 hidden w-full sm:block"
+          style={{ top: `${(5000 / 7678) * 100}%` }}
         />
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 pb-10 pt-10 sm:pb-4 sm:pt-16">
@@ -181,34 +201,46 @@ export function AboutUsSection() {
         </div>
       </div>
 
-      {/* Palace footer: a normal block-level image, not absolutely
-          positioned — so it always renders right where it belongs, right
-          after the last chapter's real content, at its own true size. */}
-      <div className="relative">
-        <img src="/our-story-palace.webp" alt="" aria-hidden="true" className="block w-full" />
+      {/* Mobile-only palace footer: a normal block-level image, not
+          absolutely positioned — so it always renders right where it
+          belongs, right after the last chapter's real content, at its own
+          true size. sm: and up already have the palace absolutely
+          positioned inside the aspect-ratio box above, so this is hidden
+          there to avoid rendering (and reserving height for) it twice. */}
+      <img
+        src="/our-story-palace.webp"
+        alt=""
+        aria-hidden="true"
+        className="block w-full sm:hidden"
+      />
 
-        {/* Two sizes, not three: base = phones (<640px), sm: = everything
-            else. The fixed pixel bottom/right/w below sm: was eating more
-            than half the width on a narrow phone, so it's smaller there —
-            on tablet/desktop, sm: values are what's actually showing, so
-            edit those to move/resize it on a normal browser window. Hover
-            for the tilak's significance — same tooltip copy/markup as the
-            Palace section's tilak mark. */}
-        <div
-          tabIndex={0}
-          className="group absolute bottom-6 right-8 z-10 w-28 cursor-help focus:outline-none sm:bottom-10 sm:right-20 sm:w-48"
-        >
-          <img
-            src="/Tilak.png"
-            alt="Rows of red tilak marks"
-            className="h-auto w-full transition-transform duration-300 ease-out group-hover:scale-105"
-          />
-          <div className="pointer-events-none absolute bottom-full right-0 mb-2 w-60 rounded-xl bg-maroon/95 px-4 py-2.5 text-left opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:w-72">
-            <p className="font-label text-[11px] leading-relaxed tracking-wide text-cream">
-              The tilak is a sacred mark of blessing in Indian culture — placed on the forehead to
-              honor and welcome guests, invoke protection, and mark auspicious beginnings.
-            </p>
-          </div>
+      {/* Tilak sits outside both palace renderings, anchored to this
+          outermost wrapper's own bottom edge instead — on mobile that
+          coincides with the palace footer just above; on sm: and up it
+          coincides with the aspect-ratio box's bottom, which was sized to
+          land exactly at the (also absolutely-positioned) palace image's
+          bottom edge. One element instead of duplicating it per
+          breakpoint. Two sizes, not three: base = phones (<640px), sm: =
+          everything else. The fixed pixel bottom/right/w below sm: was
+          eating more than half the width on a narrow phone, so it's
+          smaller there — on tablet/desktop, sm: values are what's
+          actually showing, so edit those to move/resize it on a normal
+          browser window. Hover for the tilak's significance — same
+          tooltip copy/markup as the Palace section's tilak mark. */}
+      <div
+        tabIndex={0}
+        className="group absolute bottom-6 right-8 z-10 w-28 cursor-help focus:outline-none sm:bottom-10 sm:right-20 sm:w-48"
+      >
+        <img
+          src="/Tilak.png"
+          alt="Rows of red tilak marks"
+          className="h-auto w-full transition-transform duration-300 ease-out group-hover:scale-105"
+        />
+        <div className="pointer-events-none absolute bottom-full right-0 mb-2 w-60 rounded-xl bg-maroon/95 px-4 py-2.5 text-left opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:w-72">
+          <p className="font-label text-[11px] leading-relaxed tracking-wide text-cream">
+            The tilak is a sacred mark of blessing in Indian culture — placed on the forehead to
+            honor and welcome guests, invoke protection, and mark auspicious beginnings.
+          </p>
         </div>
       </div>
     </div>

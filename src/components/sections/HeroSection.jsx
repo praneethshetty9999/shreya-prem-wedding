@@ -41,12 +41,17 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
         animate="visible"
         custom={0}
         variants={fadeUp}
-        className="cursor-pointer"
+        className="flex cursor-pointer flex-col items-center gap-8 sm:gap-10 lg:gap-12"
       >
         <img
           src="/Group.svg"
           alt="Save the date, March 3-6 2027"
           className="h-auto w-[190px] sm:w-[220px] lg:w-[251px]"
+        />
+        <img
+          src="/Frame 73.png"
+          alt="Click date to RSVP"
+          className="h-auto w-[110px] sm:hidden"
         />
       </motion.button>
 
@@ -59,6 +64,16 @@ export function HeroSection({ onOpenRsvp = () => {} }) {
       >
         <img src="/Logo.svg" alt="" className="h-full w-full" />
       </motion.div>
+
+      <motion.img
+        src="/Group.png"
+        alt="Shreya & Prem"
+        initial="hidden"
+        animate="visible"
+        custom={0.22}
+        variants={fadeUp}
+        className="h-auto w-[190px] sm:hidden"
+      />
 
       <motion.p
         initial="hidden"

@@ -18,7 +18,7 @@ const EVENTS = [
     figureBox: { left: 57.94, top: 16.67, width: 30, height: 60.56 },
     figureAspect: 0.7907,
     description:
-      'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). Placeholder text — More details coming soon.',
+      'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). More details coming soon.',
     facts: [
       { label: 'Time', value: '1:00 PM' },
       { label: 'Venue', value: 'Alia Fort: Haveli/Poolside' },
@@ -36,7 +36,7 @@ const EVENTS = [
     figureBox: { left: 55.22, top: 20.31, width: 38.38, height: 60.8 },
     figureAspect: 1.0077,
     description:
-      'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. Placeholder text — More details coming soon.',
+      'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. More details coming soon.',
     facts: [
       { label: 'Time', value: '10:00 AM' },
       { label: 'Venue', value: 'Alia Fort: Courtyard' },
@@ -55,7 +55,7 @@ const EVENTS = [
     figureNotch: { corner: 'bottom-right', width: 20, height: 16 },
     figureAspect: 0.7771,
     description:
-      'An evening under the stars with soulful qawwali and Sufi melodies echoing through the fort. Placeholder text — More details coming soon.',
+      'An evening under the stars with soulful qawwali and Sufi melodies echoing through the fort. More details coming soon.',
     facts: [
       { label: 'Time', value: '6:00 PM' },
       { label: 'Venue', value: 'Alia Fort: Nazara' },
@@ -74,7 +74,7 @@ const EVENTS = [
     figureNotch: { corner: 'bottom-right', width: 20, height: 9 },
     figureAspect: 0.8568,
     description:
-      'Henna, choreographed chaos, and a dance floor that will not be left empty — an afternoon of mehendi flowing into a night of sangeet. Placeholder text — More details coming soon.',
+      'Henna, choreographed chaos, and a dance floor that will not be left empty — an afternoon of mehendi flowing into a night of sangeet. More details coming soon.',
     facts: [
       { label: 'Time', value: '6:00 PM' },
       { label: 'Venue', value: 'Alia Fort: Aravali Lawn' },
