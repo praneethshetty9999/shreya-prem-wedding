@@ -18,11 +18,11 @@ const EVENTS = [
     figureBox: { left: 57.94, top: 16.67, width: 30, height: 60.56 },
     figureAspect: 0.7907,
     description:
-      'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). Placeholder text — full details coming soon.',
+      'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). Placeholder text — More details coming soon.',
     facts: [
-      { label: 'Time', value: '10:00 AM' },
-      { label: 'Venue', value: 'To be announced' },
-      { label: 'Dress code', value: 'Shades of yellow' },
+      { label: 'Time', value: '1:00 PM' },
+      { label: 'Venue', value: 'Alia Fort: Haveli/Poolside' },
+      { label: 'Dress code', value: 'Shades of yellow and orange' },
     ],
     position: 'md:col-start-1 md:row-start-1',
   },
@@ -36,11 +36,11 @@ const EVENTS = [
     figureBox: { left: 55.22, top: 20.31, width: 38.38, height: 60.8 },
     figureAspect: 1.0077,
     description:
-      'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. Placeholder text — full details coming soon.',
+      'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. Placeholder text — More details coming soon.',
     facts: [
-      { label: 'Time', value: '9:00 AM' },
-      { label: 'Venue', value: 'To be announced' },
-      { label: 'Dress code', value: 'Traditional attire' },
+      { label: 'Time', value: '10:00 AM' },
+      { label: 'Venue', value: 'Alia Fort: Courtyard' },
+      { label: 'Dress code', value: 'Shades of white and gold' },
     ],
     position: 'md:col-start-2 md:row-start-1',
   },
@@ -55,10 +55,10 @@ const EVENTS = [
     figureNotch: { corner: 'bottom-right', width: 20, height: 16 },
     figureAspect: 0.7771,
     description:
-      'An evening under the stars with soulful qawwali and Sufi melodies echoing through the fort. Placeholder text — full details coming soon.',
+      'An evening under the stars with soulful qawwali and Sufi melodies echoing through the fort. Placeholder text — More details coming soon.',
     facts: [
-      { label: 'Time', value: '7:30 PM' },
-      { label: 'Venue', value: 'To be announced' },
+      { label: 'Time', value: '6:00 PM' },
+      { label: 'Venue', value: 'Alia Fort: Nazara' },
       { label: 'Dress code', value: 'Festive evening wear' },
     ],
     position: 'md:col-start-1 md:row-start-2',
@@ -74,11 +74,11 @@ const EVENTS = [
     figureNotch: { corner: 'bottom-right', width: 20, height: 9 },
     figureAspect: 0.8568,
     description:
-      'Henna, choreographed chaos, and a dance floor that will not be left empty — an afternoon of mehendi flowing into a night of sangeet. Placeholder text — full details coming soon.',
+      'Henna, choreographed chaos, and a dance floor that will not be left empty — an afternoon of mehendi flowing into a night of sangeet. Placeholder text — More details coming soon.',
     facts: [
-      { label: 'Time', value: '4:00 PM' },
-      { label: 'Venue', value: 'To be announced' },
-      { label: 'Dress code', value: 'Bright & festive' },
+      { label: 'Time', value: '6:00 PM' },
+      { label: 'Venue', value: 'Alia Fort: Aravali Lawn' },
+      { label: 'Dress code', value: 'Indian festive wear' },
     ],
     position: 'md:col-start-2 md:row-start-2',
   },
@@ -92,11 +92,11 @@ const EVENTS = [
     figureBox: { left: 20.32, top: 28.06, width: 59.94, height: 37.89 },
     figureAspect: 1.1953,
     description:
-      'The main event — the shaadi itself, followed by the reception and an after party that promises to outlast the night. Placeholder text — full details coming soon.',
+      'An all day event -- the shaadi itself, followed by the reception and a special after party that promises to outlast the night. Full details coming soon!',
     facts: [
-      { label: 'Time', value: '11:00 AM' },
-      { label: 'Venue', value: 'To be announced' },
-      { label: 'Dress code', value: 'Your regal best' },
+      { label: 'Time', value: 'TBA' },
+      { label: 'Venue', value: 'Alia Fort Bishangarh' },
+      { label: 'Dress code', value: 'TBA' },
     ],
   },
 ]

@@ -30,7 +30,7 @@ export function LandingPage({ onEnter }) {
       {/* Right half of the postcard */}
       <div className="flex w-full justify-center px-6 md:w-1/2 md:translate-x-full md:px-12 lg:px-20">
         <div className="w-full max-w-xl">
-          <div className="font-label text-base text-[#7c3b24] sm:text-lg lg:text-xl">
+          <div className="font-label text-base text-[#B87A36] sm:text-lg lg:text-xl">
             {/* w-fit + ml-auto: the divider img below is w-full of *this*
                 wrapper, not the whole column, so it shrinks to match the
                 line's own text width instead of spanning the full width. */}

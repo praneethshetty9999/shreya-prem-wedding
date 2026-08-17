@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { CountryCodeSelect } from './CountryCodeSelect'
-import { ArrowRightIcon } from './icons'
 
 const fieldClass =
   'font-label w-full rounded-xl border border-vermillion bg-transparent px-4 py-3.5 text-sm text-terracotta placeholder:text-terracotta/50 focus:outline-none'
@@ -34,6 +33,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
   const [country, setCountry] = useState('')
   const [zipCode, setZipCode] = useState('')
   const [dietary, setDietary] = useState('')
+  const [submittingIntent, setSubmittingIntent] = useState(null)
 
   const isPhoneValid = primaryPhone.length >= 7 && primaryPhone.length <= 12
   const isComplete =
@@ -42,13 +42,11 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
       (value) => value.trim().length > 0
     )
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    if (!isComplete) return
-    // Leading apostrophe forces Google Sheets (USER_ENTERED input) to store
-    // "+1 ..." as text instead of trying to parse it as a formula.
-    onSubmit({
-      primaryMobile: `'${primaryCode} ${primaryPhone}`,
+  function getPayload(attending) {
+    return {
+      name: guestName,
+      attending: attending,
+      primaryMobile: primaryPhone ? `'${primaryCode} ${primaryPhone}` : '',
       secondaryMobile: secondaryPhone ? `'${secondaryCode} ${secondaryPhone}` : '',
       streetAddress: streetAddress.trim(),
       aptSuite: aptSuite.trim(),
@@ -57,11 +55,23 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
       country: country.trim(),
       zipCode: zipCode.trim(),
       dietaryRestrictions: dietary.trim(),
-    })
+    }
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    if (!isComplete) return
+    setSubmittingIntent('attending')
+    onSubmit(getPayload(true))
+  }
+
+  function handleNotComing() {
+    setSubmittingIntent('not-attending')
+    onSubmit(getPayload(false))
   }
 
   return (
-    <form onSubmit={handleSubmit} className="text-left">
+    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-xl text-left">
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="font-heading text-2xl font-bold text-vermillion sm:text-3xl">
           Welcome, {guestName}!
@@ -151,14 +161,28 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
 
       {submitError && <p className="font-label mt-4 text-sm text-red-600">{submitError}</p>}
 
-      <button
-        type="submit"
-        disabled={!isComplete || isSubmitting}
-        className="font-label mt-8 flex w-full items-center justify-center gap-3 rounded-full bg-vermillion py-3.5 text-lg text-rsvp-cream transition-opacity disabled:opacity-40"
-      >
-        {isSubmitting ? 'Submitting…' : 'Confirm RSVP'}
-        {!isSubmitting && <ArrowRightIcon className="h-5 w-5" />}
-      </button>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={handleNotComing}
+          disabled={isSubmitting}
+          className="font-label flex flex-1 items-center justify-center rounded-full border border-vermillion px-3 py-3.5 text-base text-vermillion transition-opacity disabled:opacity-40 sm:text-lg whitespace-nowrap"
+        >
+          {isSubmitting && submittingIntent === 'not-attending'
+            ? 'Submitting...'
+            : "Won't be there :("}
+        </button>
+
+        <button
+          type="submit"
+          disabled={!isComplete || isSubmitting}
+          className="font-label flex flex-1 items-center justify-center gap-2 rounded-full bg-vermillion px-3 py-3.5 text-base text-rsvp-cream transition-opacity disabled:opacity-40 sm:gap-3 sm:text-lg whitespace-nowrap"
+        >
+          {isSubmitting && submittingIntent === 'attending'
+            ? 'Submitting...'
+            : 'See you there!'}
+        </button>
+      </div>
     </form>
   )
 }

@@ -8,6 +8,7 @@ export async function fetchGuestList() {
 
 export async function submitRsvp({
   name,
+  attending,
   primaryMobile,
   secondaryMobile,
   streetAddress,
@@ -23,6 +24,7 @@ export async function submitRsvp({
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name,
+      attending,
       primaryMobile,
       secondaryMobile,
       streetAddress,
