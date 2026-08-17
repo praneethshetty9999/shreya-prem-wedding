@@ -166,7 +166,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
           disabled={isSubmitting}
           className="font-label flex flex-1 items-center justify-center rounded-full border border-vermillion px-3 py-3.5 text-base text-vermillion transition-opacity disabled:opacity-40 sm:text-lg whitespace-nowrap"
         >
-          {isSubmitting ? ‘Submitting…’ : `Won’t be there :(`}
+          {isSubmitting ? "Submitting..." : "Won’t be there :("}
         </button>
 
         <button
