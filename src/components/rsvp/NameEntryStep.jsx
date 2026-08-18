@@ -50,7 +50,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
           src="/Flower.png"
           alt=""
           aria-hidden="true"
-          className="absolute left-1/2 top-[46%] w-[18%] -translate-x-1/2 sm:hidden"
+          className="absolute left-1/2 top-[46%] w-[28%] -translate-x-1/2 sm:hidden"
         />
         <img
           src="/Flower.png"
