@@ -10,7 +10,7 @@ const tooltipClass =
 // not rebuilt in HTML. It isn't one image scaled to every viewport: the
 // design reflows its text column at each breakpoint (font size and line
 // wrapping change), so a single raster blurs badly at some widths and looks
-// razor-sharp at others. FAQ-320/480/576/768/992/1024/1200/1440.png are
+// razor-sharp at others. 320/480/576/768/992/1024/1200/1440 FAQ.png are
 // exports of that same reflow at each breakpoint's canvas width; <picture>
 // picks whichever one matches the current viewport so the page is always
 // displayed near its native resolution instead of being stretched or
@@ -58,14 +58,14 @@ export function FAQSection() {
       `}</style>
 
       <picture>
-        <source media="(min-width: 1440px)" srcSet="/FAQ-1440.png" />
-        <source media="(min-width: 1200px)" srcSet="/FAQ-1200.png" />
-        <source media="(min-width: 1024px)" srcSet="/FAQ-1024.png" />
-        <source media="(min-width: 992px)" srcSet="/FAQ-992.png" />
-        <source media="(min-width: 768px)" srcSet="/FAQ-768.png" />
-        <source media="(min-width: 576px)" srcSet="/FAQ-576.png" />
-        <source media="(min-width: 480px)" srcSet="/FAQ-480.png" />
-        <img src="/FAQ-320.png" alt="Frequently asked questions" className="block w-full" />
+        <source media="(min-width: 1440px)" srcSet="/1440 FAQ.png" />
+        <source media="(min-width: 1200px)" srcSet="/1200 FAQ.png" />
+        <source media="(min-width: 1024px)" srcSet="/1024.png" />
+        <source media="(min-width: 992px)" srcSet="/992.png" />
+        <source media="(min-width: 768px)" srcSet="/768.png" />
+        <source media="(min-width: 576px)" srcSet="/576 FAQ.png" />
+        <source media="(min-width: 480px)" srcSet="/480 FAQ.png" />
+        <img src="/320 FAQ.png" alt="Frequently asked questions" className="block w-full" />
       </picture>
 
       <a
