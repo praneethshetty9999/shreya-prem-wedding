@@ -38,14 +38,20 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
         className="relative h-[68svh] w-full bg-cover bg-center shadow-2xl sm:aspect-auto sm:h-[80svh] sm:w-[90vw]"
         style={{ backgroundImage: "url('/rsvp-background.png')" }}
       >
-        <h2 className="absolute font-heading-condensed top-[32%] w-full text-center text-[clamp(20px,7vw,24px)] font-bold leading-none tracking-[0.01em] text-vermillion sm:top-[23%] sm:text-[48px] lg:text-[67.72px]">
+        <h2 className="absolute font-heading-condensed top-[29%] w-full text-center text-[clamp(25px,8.4vw,30px)] font-bold leading-none tracking-[0.01em] text-vermillion sm:top-[23%] sm:text-[48px] lg:text-[67.72px]">
         Please RSVP by
       </h2>
 
-      <p className="absolute font-heading-condensed top-[41%] w-full text-center text-[clamp(20px,7vw,24px)] font-bold leading-none tracking-[0.01em] text-vermillion sm:top-[35%] sm:text-[48px] lg:text-[67.72px]">
+      <p className="absolute font-heading-condensed top-[37%] w-full text-center text-[clamp(25px,8.4vw,30px)] font-bold leading-none tracking-[0.01em] text-vermillion sm:top-[35%] sm:text-[48px] lg:text-[67.72px]">
         {RSVP_DEADLINE.replace('September', 'SEPTEMBER')}
       </p>
 
+        <img
+          src="/Flower.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/2 top-[46%] w-[18%] -translate-x-1/2 sm:hidden"
+        />
         <img
           src="/Flower.png"
           alt=""
@@ -93,10 +99,15 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
         </form>
 
         <p
-          className="font-label absolute left-1/2 top-[6%] w-[80%] -translate-x-1/2 text-center text-[clamp(12px,3.6vw,16px)] font-medium leading-snug tracking-wide sm:w-[70%] sm:text-base sm:leading-normal"
+          className="font-label absolute left-1/2 top-[6%] w-[92%] -translate-x-1/2 text-center text-[clamp(11px,3.6vw,15px)] font-medium leading-snug tracking-wide sm:w-[70%] sm:text-base sm:leading-normal"
           style={{ color: '#594F1A' }}
         >
-          <span>
+          <span className="sm:hidden">
+            We request your attendance for all
+            <br />
+            three days of our celebration:
+          </span>
+          <span className="hidden sm:inline">
             We request your attendance for all three days of our celebration:
           </span>
           <br />

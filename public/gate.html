@@ -54,7 +54,9 @@
       }
 
       /* Postcard center divider — same asset and positioning as the React
-         postcard's vertical.png (LandingPage.jsx). */
+         postcard's vertical.png (LandingPage.jsx). Breakpoint matches
+         .right-half below: see the note there for why it's 1340px and not
+         768px. */
       .divider {
         display: none;
         position: absolute;
@@ -64,7 +66,7 @@
         width: auto;
         transform: translateX(-50%);
       }
-      @media (min-width: 768px) {
+      @media (min-width: 1340px) {
         .divider {
           display: block;
         }
@@ -78,13 +80,21 @@
       }
       @media (min-width: 768px) {
         .right-half {
-          width: 50%;
-          transform: translateX(100%);
           padding: 0 3rem;
         }
       }
-      @media (min-width: 1024px) {
+      /* The two-column, half-width layout (and the divider next to it) only
+         switches on at 1340px, not 768/1024px — "This has been in the works
+         for a while..." is nowrap (never wraps to a 2nd line, see .lines p
+         below), and at the 1.25rem size that ships with the half-width
+         column it needs ~492px; halving anything narrower than ~1340px
+         leaves less room than that and the line overflows past the
+         divider. Below 1340px the column stays full-width with no divider
+         competing for space (same fix applied to LandingPage.jsx). */
+      @media (min-width: 1340px) {
         .right-half {
+          width: 50%;
+          transform: translateX(100%);
           padding: 0 5rem;
         }
       }
@@ -95,7 +105,7 @@
       }
 
       .lines {
-        font-size: 1rem;
+        font-size: 0.75rem;
         color: #B87A36;
       }
       @media (min-width: 640px) {
@@ -103,7 +113,7 @@
           font-size: 1.125rem;
         }
       }
-      @media (min-width: 1024px) {
+      @media (min-width: 1340px) {
         .lines {
           font-size: 1.25rem;
         }
@@ -122,6 +132,7 @@
       .lines p {
         margin: 0;
         text-align: right;
+        white-space: nowrap;
       }
       .lines .last {
         letter-spacing: 0.1em;
