@@ -170,7 +170,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
         >
           {isSubmitting && submittingIntent === 'not-attending'
             ? 'Submitting...'
-            : "Won't be there :("}
+            : "Regretfully Declines"}
         </button>
 
         <button
@@ -180,7 +180,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
         >
           {isSubmitting && submittingIntent === 'attending'
             ? 'Submitting...'
-            : 'See you there!'}
+            : 'Joyfully Accepts'}
         </button>
       </div>
     </form>

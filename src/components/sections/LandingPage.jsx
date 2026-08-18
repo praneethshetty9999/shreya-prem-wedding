@@ -19,29 +19,37 @@ export function LandingPage({ onEnter }) {
         className="absolute right-[6%] top-[6%] w-24 sm:w-32 lg:w-36"
       />
 
-      {/* Postcard center divider */}
+      {/* Postcard center divider. The right column only switches to a half-
+          width, two-column layout at min-[1340px]: — below that, "This has
+          been in the works for a while..." (nowrap, so it can never wrap to
+          a 2nd line) needs ~492px at the 20px size that ships alongside the
+          half-width column; halving anything narrower than ~1340px leaves
+          less room than that and the line would overflow past the divider.
+          So the column (and the divider next to it) only appear once
+          there's actually space for the line to fit beside it — below that
+          the column stays full-width with no divider to compete with. */}
       <img
         src="/vertical.png"
         alt=""
         aria-hidden="true"
-        className="absolute left-1/2 top-[19%] hidden h-[62%] w-auto -translate-x-1/2 md:block"
+        className="absolute left-1/2 top-[19%] hidden h-[62%] w-auto -translate-x-1/2 min-[1340px]:block"
       />
 
       {/* Right half of the postcard */}
-      <div className="flex w-full justify-center px-6 md:w-1/2 md:translate-x-full md:px-12 lg:px-20">
+      <div className="flex w-full justify-center px-6 md:px-12 min-[1340px]:w-1/2 min-[1340px]:translate-x-full min-[1340px]:px-20">
         <div className="w-full max-w-xl">
-          <div className="font-label text-base text-[#B87A36] sm:text-lg lg:text-xl">
+          <div className="font-label text-[12px] text-[#B87A36] sm:text-lg min-[1340px]:text-xl">
             {/* w-fit + ml-auto: the divider img below is w-full of *this*
                 wrapper, not the whole column, so it shrinks to match the
                 line's own text width instead of spanning the full width. */}
             <div className="ml-auto w-fit">
-              <p className="text-right">This has been in the works for a while...</p>
+              <p className="whitespace-nowrap text-right">This has been in the works for a while...</p>
               <div className="h-2 overflow-hidden">
                 <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
               </div>
             </div>
             <div className="ml-auto mt-1 w-fit">
-              <p className="text-right">Figured we’d make it official.</p>
+              <p className="whitespace-nowrap text-right">Figured we’d make it official.</p>
               <div className="h-2 overflow-hidden">
                 <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
               </div>

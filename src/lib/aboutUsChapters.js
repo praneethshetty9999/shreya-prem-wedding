@@ -60,6 +60,7 @@ export const ABOUT_US_CHAPTERS = [
       '/about-us/murder-cabin/iceland (23).jpg',
       '/about-us/murder-cabin/iceland (24).JPG',
       '/about-us/murder-cabin/iceland (5c).JPG',
+      '/about-us/murder-cabin/5.jpg',
     ],
   },
   {
@@ -71,6 +72,7 @@ export const ABOUT_US_CHAPTERS = [
       '/about-us/then-there-were-four/IMG_6101.JPEG',
       '/about-us/then-there-were-four/IMG_6711.JPEG',
       '/about-us/then-there-were-four/new mexico (3).jpeg',
+      '/about-us/then-there-were-four/6.JPEG',
     ],
   },
   {
@@ -94,6 +96,7 @@ export const ABOUT_US_CHAPTERS = [
     photos: [
       '/about-us/families-meet/3000017.JPEG',
       '/about-us/families-meet/IMG_0565.JPEG',
+      '/about-us/families-meet/8.JPEG',
     ],
   },
   {
@@ -104,6 +107,7 @@ export const ABOUT_US_CHAPTERS = [
     photos: [
       '/about-us/wolf-moon/IMG_2565.JPEG',
       '/about-us/wolf-moon/sweden (14).jpeg',
+      '/about-us/wolf-moon/9.jpeg',
     ],
   },
   {
@@ -134,10 +138,11 @@ export const ABOUT_US_CHAPTERS = [
     title: 'Between Island\nand Mainland Life',
     text: 'Prem took an attending position on Martha\'s Vineyard, which means island life, ferry schedules, and a commute that most people would consider ambitious (and well-documented at @islanderdoc). Shreya is finishing architecture school in Cambridge. Phool and Chutki went from being homeless to having a second, vacation home! Their lives are busy, spread across geographies, but held together by intention. Like all real love stories, theirs has had its seasons — gleaming highs and harder stretches too. They\'re sure of one thing: they’ll figure it out together, forever.',
     photos: [
-      '/about-us/island-and-mainland/martha vineyard (2).jpg',
       '/about-us/island-and-mainland/martha vineyard (4).jpg',
       '/about-us/island-and-mainland/marthas vineyard (10).JPG',
       '/about-us/island-and-mainland/marthas vineyard (9).JPG',
+      '/about-us/island-and-mainland/12.jpg',
+      '/about-us/island-and-mainland/12b.jpg',
     ],
   },
 ]

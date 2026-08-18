@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { RSVP_DEADLINE } from '../../lib/constants'
 import { figureCropStyle } from '../../lib/figureCrop'
+import { ArrowRightIcon } from './icons'
 
 // The hand-painted gold underline, cropped out of the original frame art so
 // the rebuilt HTML layer keeps the authentic brush stroke (dashes included).
@@ -66,7 +67,7 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
           onSubmit={handleSubmit}
           className="absolute left-1/2 top-[76%] w-[92%] max-w-xl -translate-x-1/2 sm:top-[66%] sm:w-[52%]"
         >
-          <div className="flex items-center px-1">
+          <div className="flex items-center gap-2 px-1">
             <input
               type="text"
               value={value}
@@ -74,10 +75,14 @@ export function NameEntryStep({ value, onChange, onSubmit }) {
               placeholder="Your name & guest name (e.g. Rahul & Priya)"
               autoFocus
               aria-label="Your name"
-              className="font-label w-full bg-transparent text-[clamp(14px,4vw,24px)] font-normal leading-none tracking-normal text-terracotta placeholder:text-[clamp(10px,2.9vw,20px)] placeholder:text-[#cf9d3f] focus:outline-none"
+              className="font-label min-w-0 flex-1 bg-transparent text-[clamp(14px,4vw,24px)] font-normal leading-none tracking-normal text-terracotta placeholder:text-[clamp(10px,2.9vw,20px)] placeholder:text-[#cf9d3f] focus:outline-none"
             />
-            <button type="submit" className="sr-only">
-              Submit
+            <button
+              type="submit"
+              aria-label="Submit"
+              className="flex shrink-0 items-center justify-center text-vermillion lg:hidden"
+            >
+              <ArrowRightIcon className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
           <div
