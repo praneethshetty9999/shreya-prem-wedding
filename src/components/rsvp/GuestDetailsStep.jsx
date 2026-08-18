@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { CountryCodeSelect } from './CountryCodeSelect'
 
 const fieldClass =
-  'font-label w-full rounded-xl border border-vermillion bg-transparent px-4 py-3.5 text-sm text-terracotta placeholder:text-terracotta/50 focus:outline-none'
+  'font-label w-full rounded-xl border border-vermillion bg-transparent px-4 py-2.5 text-sm text-terracotta placeholder:text-terracotta/50 focus:outline-none sm:py-3.5'
 
 function PhoneRow({ code, onCodeChange, phone, onPhoneChange, placeholder }) {
   return (
@@ -15,7 +15,7 @@ function PhoneRow({ code, onCodeChange, phone, onPhoneChange, placeholder }) {
         placeholder={placeholder}
         value={phone}
         onChange={(event) => onPhoneChange(event.target.value.replace(/\D/g, ''))}
-        className="font-label min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm text-terracotta placeholder:text-terracotta/50 focus:outline-none"
+        className="font-label min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm text-terracotta placeholder:text-terracotta/50 focus:outline-none sm:py-3.5"
       />
     </div>
   )
@@ -85,7 +85,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
         </button>
       </div>
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-4 space-y-2 sm:mt-6 sm:space-y-3">
         <PhoneRow
           code={primaryCode}
           onCodeChange={setPrimaryCode}
@@ -118,7 +118,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
           onChange={(event) => setAptSuite(event.target.value)}
           className={fieldClass}
         />
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           <input
             type="text"
             placeholder="City*"
@@ -134,7 +134,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
             className={fieldClass}
           />
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           <input
             type="text"
             placeholder="Country*"
@@ -161,12 +161,12 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
 
       {submitError && <p className="font-label mt-4 text-sm text-red-600">{submitError}</p>}
 
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-5 flex flex-col gap-2.5 sm:mt-8 sm:gap-3 sm:flex-row">
         <button
           type="button"
           onClick={handleNotComing}
           disabled={isSubmitting}
-          className="font-label flex flex-1 items-center justify-center rounded-full border border-vermillion px-3 py-3.5 text-base text-vermillion transition-opacity disabled:opacity-40 sm:text-lg whitespace-nowrap"
+          className="font-label flex flex-1 items-center justify-center rounded-full border border-vermillion px-3 py-2.5 text-base text-vermillion transition-opacity disabled:opacity-40 sm:py-3.5 sm:text-lg whitespace-nowrap"
         >
           {isSubmitting && submittingIntent === 'not-attending'
             ? 'Submitting...'
@@ -176,7 +176,7 @@ export function GuestDetailsStep({ guestName, onReset, onSubmit, isSubmitting, s
         <button
           type="submit"
           disabled={!isComplete || isSubmitting}
-          className="font-label flex flex-1 items-center justify-center gap-2 rounded-full bg-vermillion px-3 py-3.5 text-base text-rsvp-cream transition-opacity disabled:opacity-40 sm:gap-3 sm:text-lg whitespace-nowrap"
+          className="font-label flex flex-1 items-center justify-center gap-2 rounded-full bg-vermillion px-3 py-2.5 text-base text-rsvp-cream transition-opacity disabled:opacity-40 sm:gap-3 sm:py-3.5 sm:text-lg whitespace-nowrap"
         >
           {isSubmitting && submittingIntent === 'attending'
             ? 'Submitting...'
