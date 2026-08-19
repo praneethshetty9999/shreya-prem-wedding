@@ -44,14 +44,14 @@ export function LandingPage({ onEnter }) {
                 line's own text width instead of spanning the full width. */}
             <div className="ml-auto w-fit">
               <p className="whitespace-nowrap text-right">This has been in the works for a while...</p>
-              <div className="h-2 overflow-hidden">
-                <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+              <div className="h-1 overflow-hidden sm:h-2">
+                <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-1.5 w-full sm:-mt-3" />
               </div>
             </div>
             <div className="ml-auto mt-1 w-fit">
               <p className="whitespace-nowrap text-right">Figured we’d make it official.</p>
-              <div className="h-2 overflow-hidden">
-                <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-3 w-full" />
+              <div className="h-1 overflow-hidden sm:h-2">
+                <img src="/horizontal.png" alt="" aria-hidden="true" className="-mt-1.5 w-full sm:-mt-3" />
               </div>
             </div>
           </div>
