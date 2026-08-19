@@ -29,7 +29,7 @@ export function PalaceSection() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Open directions to Alila Fort Bishangarh in Google Maps"
-        className="group absolute left-[14%] top-[48%] z-20 w-[10%] md:left-[12.5%] md:top-[45%] md:w-[6%]"
+        className="group absolute left-[20%] top-[58%] z-20 w-[10%] md:left-[12.5%] md:top-[45%] md:w-[6%]"
       >
         <img
           src="/hand.png"
