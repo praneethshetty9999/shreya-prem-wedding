@@ -7,6 +7,10 @@ import { EventDetailOverlay } from '../ui/EventDetailOverlay'
 // bg = the card artwork's flat background color (sampled from its pixels);
 // figureBox = the figure illustration's bounding box in % of the card image,
 // measured from pixel analysis; figureAspect = that box's width/height ratio.
+// Array order is the mobile (single-column) stacking order: Haldi, Sufi Night,
+// Kerala Wedding, Mehendi & Sangeet, Shaadi. Desktop ignores it — each card is
+// pinned by its own `position` col-start/row-start, so reordering here is
+// mobile-only.
 const EVENTS = [
   {
     id: 'haldi',
@@ -21,28 +25,10 @@ const EVENTS = [
       'A golden morning of turmeric, laughter, and blessings as family and friends gather to shower the couple with love (and quite a lot of yellow). More details coming soon.',
     facts: [
       { label: 'Time', value: '1:00 PM' },
-      { label: 'Venue', value: 'Alia Fort: Haveli/Poolside' },
+      { label: 'Venue', value: 'Alila Fort: Haveli/Poolside' },
       { label: 'Dress code', value: 'Shades of yellow and orange' },
     ],
     position: 'md:col-start-1 md:row-start-1',
-  },
-  {
-    id: 'kerala-wedding',
-    src: '/Card2.png',
-    title: 'Kerala Wedding',
-    date: 'March 4th',
-    bg: '#db595a',
-    theme: 'light',
-    figureBox: { left: 55.22, top: 20.31, width: 38.38, height: 60.8 },
-    figureAspect: 1.0077,
-    description:
-      'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. More details coming soon.',
-    facts: [
-      { label: 'Time', value: '10:00 AM' },
-      { label: 'Venue', value: 'Alia Fort: Courtyard' },
-      { label: 'Dress code', value: 'Shades of white and gold' },
-    ],
-    position: 'md:col-start-2 md:row-start-1',
   },
   {
     id: 'sufi-night',
@@ -58,10 +44,28 @@ const EVENTS = [
       'An evening under the stars with soulful qawwali and Sufi melodies echoing through the fort. More details coming soon.',
     facts: [
       { label: 'Time', value: '6:00 PM' },
-      { label: 'Venue', value: 'Alia Fort: Nazara' },
+      { label: 'Venue', value: 'Alila Fort: Nazara' },
       { label: 'Dress code', value: 'Festive evening wear' },
     ],
     position: 'md:col-start-1 md:row-start-2',
+  },
+  {
+    id: 'kerala-wedding',
+    src: '/Card2.png',
+    title: 'Kerala Wedding',
+    date: 'March 4th',
+    bg: '#db595a',
+    theme: 'light',
+    figureBox: { left: 55.22, top: 20.31, width: 38.38, height: 60.8 },
+    figureAspect: 1.0077,
+    description:
+      'A serene traditional ceremony steeped in Kerala custom — white and gold, temple flowers, and timeless ritual. More details coming soon.',
+    facts: [
+      { label: 'Time', value: '10:00 AM' },
+      { label: 'Venue', value: 'Alila Fort: Courtyard' },
+      { label: 'Dress code', value: 'Shades of white and gold' },
+    ],
+    position: 'md:col-start-2 md:row-start-1',
   },
   {
     id: 'mehendi-sangeet',
@@ -77,7 +81,7 @@ const EVENTS = [
       'Henna, choreographed chaos, and a dance floor that will not be left empty — an afternoon of mehendi flowing into a night of sangeet. More details coming soon.',
     facts: [
       { label: 'Time', value: '6:00 PM' },
-      { label: 'Venue', value: 'Alia Fort: Aravali Lawn' },
+      { label: 'Venue', value: 'Alila Fort: Aravali Lawn' },
       { label: 'Dress code', value: 'Indian festive wear' },
     ],
     position: 'md:col-start-2 md:row-start-2',
@@ -95,7 +99,7 @@ const EVENTS = [
       'An all day event -- the shaadi itself, followed by the reception and a special after party that promises to outlast the night. Full details coming soon!',
     facts: [
       { label: 'Time', value: 'TBA' },
-      { label: 'Venue', value: 'Alia Fort Bishangarh' },
+      { label: 'Venue', value: 'Alila Fort Bishangarh' },
       { label: 'Dress code', value: 'TBA' },
     ],
   },
